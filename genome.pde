@@ -156,7 +156,9 @@ class Genome {
     newimg.image(loadImage("watermark.png"), 0, 0);
     this.points=new ArrayList<Pixel>();
     int i=0;
+    int igen=0;
     for (Gene gene : this.genes) {
+      this.genes.get(igen).begin=i;
       for (Pixel pix : gene.points) {
         this.points.add(new Pixel(i, colors[pix.value]));
         newimg.fill(colors[pix.value]);
@@ -165,14 +167,17 @@ class Genome {
           pSiz, pSiz);
         i++;
       }
-      gene.begin=i;
-      this.points.add(new Pixel(i, colors[floor(12+random(4))]));
+      this.points.add(new Pixel(i, colors[15/*random(4)*/]));
       newimg.fill(colors[this.points.get(i).value]);
       newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
         this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
         pSiz, pSiz);
       i++;
+      igen++;
     }
+    newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
+            this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
+            (this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width), pSiz);
     newimg.endDraw();
     this.img=newimg.get();
   }
