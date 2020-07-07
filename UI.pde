@@ -66,12 +66,15 @@ class Group extends PreGroup {
 class Slider extends Tuple {
   final int buttonwid = sldBtn;
   Slider(int x, int y, int scrollwid, int value, int maxValue, String name) {
+    this(x, y, scrollwid, value, 0, maxValue, name);
+  }
+  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, String name) {
     this.x=x;
     this.y=y;
     this.value=value;
     this.wid=scrollwid;
     this.objs=new Place[]{
-      new Scroll(buttonwid+margin, buttonwid/2, scrollwid, value, maxValue, name), 
+      new Scroll(buttonwid+margin, buttonwid/2, scrollwid, value, minValue, maxValue, name), 
       new Button(0, 0, buttonwid, buttonwid, "-"), 
       new Button(buttonwid+margin*2+scrollwid, 0, buttonwid, buttonwid, "+")
     };
@@ -84,12 +87,12 @@ class Slider extends Tuple {
       this.objs[0].value--;
     if (this.objs[2].touched)
       this.objs[0].value++;
-    this.objs[0].value=clamp(this.objs[0].value, 0, this.objs[0].barmax);
+    this.objs[0].value=constrain(this.objs[0].value, this.objs[0].barmin, this.objs[0].barmax);
     updateValue();
   }
   void valueSet(int value){
-    value=clamp(value, -1, this.objs[0].barmax);
-    if (value<0)
+    value=constrain(value, this.objs[0].barmin-1, this.objs[0].barmax);
+    if (value<this.objs[0].barmin)
       this.objs[0].pressed = false;
     else{
       this.value = value;
@@ -194,7 +197,7 @@ class ColorTabs extends Tuple{
     for(int i=0; i<objs.length; i++){
       this.objs[i].pressed = false;
     }
-    this.value=clamp(value, 0, objs.length);
+    this.value=constrain(value, 0, objs.length);
     if (this.value>0){
       this.objs[this.value-1].pressed=true;
     }
@@ -264,7 +267,7 @@ class Tabs extends PreGroup {
       this.objs[i].pressed = false;
       this.kid[i].shown = false;
     }
-    this.value=clamp(value, 0, objs.length);
+    this.value=constrain(value, 0, objs.length);
     if (this.value>0){
       this.objs[this.value-1].pressed=true;
       this.kid[this.value-1].shown=true;

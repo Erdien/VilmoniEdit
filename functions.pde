@@ -29,9 +29,6 @@ int idToTouch(int id) { //not used, can be used to upgrade touch/click event
     if (touches[i].id==id) return i;
   return 7;
 }
-int clamp(int value, int low, int high) {
-  return constrain(value, low, high);
-}
 Group[] groupAssign(int x, int y, Place[] toAssign){
   Group[] result = new Group[toAssign.length];
   for(int i=0; i<toAssign.length; i++)

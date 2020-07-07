@@ -194,7 +194,7 @@ void createGUI(){
       
       new Group(margin-myGenome.img.width, margin+myGenome.img.height,
         new Place[]{
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 100, "Base"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"),
           new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 1000, "Accurate"),
           new Button(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, 2*sldBtn, sldBtn, "Set"),
           new Label(geneX-margin, -margin, "Now"),
@@ -212,11 +212,11 @@ void createGUI(){
             geneNames[compareSpieces(myGenome.genes.size())]),
           new Group(geneX-margin, 2*margin+4*resizedPSiz+10, new Place[]{new Gene(0,0)})
         }//end pregroup
-      ),//end 1st group
+      ),//end Gene
       
       new Group(200, 350,
         new Place[]{
-          new Scroll(0, 0, 200, 0, 100, "Scroll2"), 
+          new Scroll(0, 0, 200, 60, 50, 100, "Scroll2"), 
           new Switch(0, 30, 60, rowHei, "Switch2"), 
           new Button(70, 30, 60, rowHei, "Button1"),
           new Label(0, 150, "Label1"),

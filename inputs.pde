@@ -10,6 +10,7 @@ class Place {
   //int type=0;//nothing, button, switch, scroll
   int value=0;
   int barmax=1;
+  int barmin=0;
   final int barhei=30;
   final int barwid=15;
   final int rowHei = 30;
@@ -136,12 +137,13 @@ class Switch extends Place {
   }
 }
 class Scroll extends Place {
-  Scroll(int x, int y, int wid, int value, int barmax, String name) {
+  Scroll(int x, int y, int wid, int value, int barmin, int barmax, String name) {
     this.x=x;
     this.y=y;
     this.wid=wid;
     this.hei=10;
     this.value=value;
+    this.barmin=barmin;
     this.barmax=barmax;
     this.name=name;
   }
@@ -151,7 +153,7 @@ class Scroll extends Place {
       fill(highlight);
     rect(this.x, this.y-this.hei/2, this.wid, this.hei);
     fill(highlight);
-    rect(this.x+this.value*this.wid/this.barmax-this.barwid/2, this.y-this.barhei/2, this.barwid, this.barhei);
+    rect(this.x+(this.value-this.barmin)*this.wid/(this.barmax-this.barmin)-this.barwid/2, this.y-this.barhei/2, this.barwid, this.barhei);
     fill(0);
     textAlign(CENTER, BOTTOM);
     text(this.name + ": " + this.value, this.x+this.wid/2, this.y-this.barhei/2);
@@ -176,8 +178,8 @@ class Scroll extends Place {
     return false;
   }
   private void updateValue(int x, int y){
-    this.value=(int)((touches[this.touchId].x-this.x-x)/this.wid*this.barmax);
-    this.value=clamp(this.value,0,this.barmax);
+    this.value=(int)((touches[this.touchId].x-this.x-x)/this.wid*(this.barmax-this.barmin))+this.barmin;
+    this.value=constrain(this.value, this.barmin, this.barmax);
   }
 }
 class TextBox extends Place {

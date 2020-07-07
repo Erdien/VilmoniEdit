@@ -104,7 +104,7 @@ void PixelInsertBeforeAction(){
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
-    me.kid[0].kid[0].objs[0].valueSet(clamp(pSld+1, 0, myGenome.points.size()-1));
+    me.kid[0].kid[0].objs[0].valueSet(constrain(pSld+1, 0, myGenome.points.size()-1));
   }
 }
 void PixelSetAction(){
@@ -118,7 +118,7 @@ void PixelSetAction(){
 }
 void PixelInsertAfterAction(){
   if (me.kid[0].kid[0].objs[4].touched){
-    myGenome.points.add(clamp(me.kid[0].kid[0].objs[0].value+1, 0, myGenome.points.size()-1), new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
+    myGenome.points.add(constrain(me.kid[0].kid[0].objs[0].value+1, 0, myGenome.points.size()-1), new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
@@ -144,8 +144,8 @@ void PixelChangeActions(){//protected
     me.kid[0].kid[1].kid[1].valueSet(pTab);
 }
 void PixelNowAction(){
-  me.kid[0].kid[0].objs[7].value=colors[myGenome.points.get(clamp(me.kid[0].kid[0].objs[0].value, 0, myGenome.points.size()-1)).value];
-  me.kid[0].kid[0].objs[7].name=str(myGenome.points.get(clamp(me.kid[0].kid[0].objs[0].value, 0, myGenome.points.size()-1)).value);
+  me.kid[0].kid[0].objs[7].value=colors[myGenome.points.get(constrain(me.kid[0].kid[0].objs[0].value, 0, myGenome.points.size()-1)).value];
+  me.kid[0].kid[0].objs[7].name=str(myGenome.points.get(constrain(me.kid[0].kid[0].objs[0].value, 0, myGenome.points.size()-1)).value);
 }
 void PixelNewAction(){
   me.kid[0].kid[0].objs[8].value=colors[me.kid[0].kid[0].objs[1].value];
