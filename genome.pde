@@ -8,7 +8,7 @@ class Pixel {
   }
   int setValue(color data) {
     for (int i=0; i<colors.length; i++)
-      if (isSimilar(data, colors[i], 7))
+      if (isSimilar(data, colors[i], 15))
         if (i==17 || i==18)//alt colors
           return i-12;     //make alt colors normal colors
         else
@@ -88,7 +88,7 @@ class Genome {
   }
   private void getBegin() {
     for (int point=this.img.height-ceil(pSiz/2); point>0; point-=pSiz)
-      if (isSimilar(this.img.get(floor(pSiz/2), point), colors[16], 7)) {
+      if (isSimilar(this.img.get(floor(pSiz/2), point), colors[16], 8)) {
         this.beginPixel = new Position(floor(pSiz/2), point+pSiz);
         break;
       }

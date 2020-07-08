@@ -11,25 +11,25 @@ Place selectedTextBox;
 Group me;
 Group[] mex;
 final color[] colors = new color[]{
-  color(248, 0, 122),   //red        0
-  color(245, 100, 255), //pink       1
-  color(107, 0, 225),   //purple     2
-  color(34, 130, 255),  //blue       3
-  color(25, 220, 247),  //cyan       4
-  color(0, 194, 183),   //teal       5
-  color(0, 171, 9),     //dgreen     6
-  color(80, 225, 26),   //green      7
-  color(165, 250, 0),   //lime       8
-  color(255, 252, 36),  //yellow     9
-  color(255, 193, 0),   //orange     10
-  color(255, 121, 30),  //dorange    11
+  color(247, 0, 113),   //red        0
+  color(244, 91, 255),  //pink       1
+  color(98, 0, 222),    //purple     2
+  color(28, 122, 255),  //blue       3
+  color(20, 217, 246),  //cyan       4
+  color(0, 189, 177),   //teal       5
+  color(0, 164, 6),     //dgreen     6
+  color(71, 222 , 21),  //green      7
+  color(158, 250, 0),   //lime       8
+  color(255, 252, 30),  //yellow     9
+  color(255, 188, 0),   //orange     10
+  color(255, 112, 24),  //dorange    11
                         //separators 
-  color(160, 104, 75),  //brown      12
-  color(254, 254, 254), //white      13
-  color(156, 156, 156), //gray       14
+  color(153, 95, 66),    //brown      12
+  color(255, 255, 255), //white      13
+  color(149, 149, 149), //gray       14
   color(0, 0, 0),       //black      15
                         //controll
-  color(255, 255, 244), //bg         16
+  color(255, 255, 243), //bg         16
   color(20, 194, 183),  //alt teal   17-12
   color(20, 171, 9),    //alt dgreen 18-12
   color(89, 49, 27)     //none       19
