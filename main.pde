@@ -168,11 +168,11 @@ void createGUI(){
     
       new Group(margin-myGenome.img.width, margin+myGenome.img.height,
         new Place[]{
-          //new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel"),
-          //new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
-          //  new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "", "", "", ""}),
-          new Slider(0, 0, width/2-sldCst-margin*3/2, 0, myGenome.points.size()-1, "Pixel"),
-          new Slider(width/2+margin-margin*3/2, 0, width/2-sldCst-margin*3/2, 0, 15, "Value"),
+          new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel"),
+          new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
+            new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "", "", "", ""}),
+          //new Slider(0, 0, width/2-sldCst-margin*3/2, 0, myGenome.points.size()-1, "Pixel"),
+          //new Slider(width/2+margin-margin*3/2, 0, width/2-sldCst-margin*3/2, 0, 15, "Value"),
           new Button(0, sldBtn+margin, sldBtn*2, sldBtn, "Insert before"),
           new Button(0, (sldBtn+margin)*2, sldBtn*2, sldBtn, "Set"),//if pressed set \/ to \\//
           new Button(0, (sldBtn+margin)*3, sldBtn*2, sldBtn, "Insert after"),
