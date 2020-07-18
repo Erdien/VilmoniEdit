@@ -27,7 +27,7 @@ color chain(int place, Genome code) {
 int idToTouch(int id) { //not used, can be used to upgrade touch/click event
   for (int i=0; i<touches.length; i++)
     if (touches[i].id==id) return i;
-  return 7;
+  return -1;
 }
 Group[] groupAssign(int x, int y, Place[] toAssign){
   Group[] result = new Group[toAssign.length];

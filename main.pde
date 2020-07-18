@@ -136,6 +136,7 @@ void setup() {
   
 }
 void exit(){
+  //this.exit();
   myActivity.finishAffinity();
 }
 void draw(){
@@ -146,6 +147,8 @@ void draw(){
   }else if(myGenome!=null)
   {
     createGUI();
+    //System.exit(0);
+    //this.getActivity().finishAffinity();
   }
 }
 void createGUI(){
