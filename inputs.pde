@@ -9,12 +9,12 @@ class Place {
   int hei=0;
   //int type=0;//nothing, button, switch, scroll
   int value=0;
-  int barmax=1;
-  int barmin=0;
-  final int barhei=30;
-  final int barwid=15;
+  int barmax=1; //have to delete/make scroll only
+  int barmin=0; //same as ^
+  final int barhei=30; // not sure if same as ^
+  final int barwid=15; // same as ^
   final int rowHei = 30;
-  int touchId;
+  int touchId=-1;
   String name="";
   boolean touched=false;
   boolean pressed=false;
@@ -137,7 +137,11 @@ class Switch extends Place {
   }
 }
 class Scroll extends Place {
+  int touchIndex=-1;
   Scroll(int x, int y, int wid, int value, int barmin, int barmax, String name) {
+    this(x, y, wid, value, barmin, barmax, -1, name);
+  }
+  Scroll(int x, int y, int wid, int value, int barmin, int barmax, int touchId, String name) {
     this.x=x;
     this.y=y;
     this.wid=wid;
@@ -145,6 +149,8 @@ class Scroll extends Place {
     this.value=value;
     this.barmin=barmin;
     this.barmax=barmax;
+    this.touchId=touchId;
+    touchIndex=idToTouch(touchId);
     this.name=name;
   }
   void drawMe() {
@@ -167,18 +173,28 @@ class Scroll extends Place {
           touches[touch].y <= this.y+y+this.hei*2) {
           updateValue(x, y);
           this.touchId=touches[touch].id;
+          println(this.touchId, "hhhhhggggggggggggggg");
+          touchIndex=touch;
           this.pressed=true;
           return true;
-        }
+        } else if(touchIndex==touch)
+          return true;
     } else if (touches.length == ptouches && this.pressed) {
+      println(this.touchId, "gt");
       updateValue(x, y);
       return this.pressed;
+    } else if (touches.length < ptouches) {
+      touchIndex=idToTouch(this.touchId);
+      if(touchIndex!=-1)
+        return true;
     }
     this.pressed=false;
     return false;
-  }
+  } 
   private void updateValue(int x, int y){
-    this.value=(int)((touches[this.touchId].x-this.x-x)/this.wid*(this.barmax-this.barmin))+this.barmin;
+    println(this.touchIndex, "gerrt");
+    if (touchIndex!=-1)
+      this.value=(int)((touches[touchIndex].x-this.x-x)/this.wid*(this.barmax-this.barmin))+this.barmin;
     this.value=constrain(this.value, this.barmin, this.barmax);
   }
 }

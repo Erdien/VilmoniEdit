@@ -103,7 +103,7 @@ void PixelInsertBeforeAction(){
     myGenome.points.add(me.kid[0].kid[0].objs[0].value, new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
-    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
+    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(constrain(pSld+1, 0, myGenome.points.size()-1));
   }
 }
@@ -112,7 +112,7 @@ void PixelSetAction(){
     myGenome.points.set(me.kid[0].kid[0].objs[0].value, new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
-    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
+    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(pSld);
   }
 }
@@ -121,7 +121,7 @@ void PixelInsertAfterAction(){
     myGenome.points.add(constrain(me.kid[0].kid[0].objs[0].value+1, 0, myGenome.points.size()-1), new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
-    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
+    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(pSld);
   }
 }
@@ -130,7 +130,7 @@ void PixelRemoveAction(){
     myGenome.points.remove(me.kid[0].kid[0].objs[0].value);
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
-    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
+    me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(pSld);
   }
 }
