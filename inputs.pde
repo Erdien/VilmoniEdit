@@ -167,21 +167,24 @@ class Scroll extends Place {
   boolean isPressed(int x, int y) {
     if (touches.length > ptouches) {
       for (int touch=0; touch < touches.length; touch++)
-        if ((touches[touch].x >= this.x+x &&
+        if (touches[touch].x >= this.x+x &&
           touches[touch].x <= this.x+x+this.wid &&
           touches[touch].y >= this.y+y-this.hei &&
-          touches[touch].y <= this.y+y+this.hei*2)
-          ) {
+          touches[touch].y <= this.y+y+this.hei*2) {
           updateValue(x, y);
           this.touchId=touches[touch].id;
           println(this.touchId, "hhhhhggggggggggggggg");
           touchIndex=touch;
           this.pressed=true;
           return true;
-        } else if(touchIndex==touch)
+        } else if(touchId==touches[touch].id) {
+          touchIndex=touch;
+          println(this.touchId, this.pressed, "hhhhhggg");
+          //this.pressed=true;
           return true;
+        }
     } else if (touches.length == ptouches && this.pressed) {
-      println(this.touchId, this.pressed, "gt");
+      //println(this.touchId, this.pressed, "gt");
       updateValue(x, y);
       return this.pressed;
     } else if (touches.length < ptouches) {
@@ -189,13 +192,13 @@ class Scroll extends Place {
       if(touchIndex!=-1)
         return true;
     }
+    touchId=-1;
     this.pressed=false;
     return false;
   } 
   private void updateValue(int x, int y){
-    println(this.touchIndex, "gerrt");
     if (touchIndex!=-1)
-      this.value=(int)((touches[touchIndex].x-this.x-x)/this.wid*(this.barmax-this.barmin))+this.barmin;
+      this.value=(int)round((touches[touchIndex].x-this.x-x)/this.wid*(this.barmax-this.barmin))+this.barmin;
     this.value=constrain(this.value, this.barmin, this.barmax);
   }
 }
