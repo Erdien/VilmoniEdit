@@ -66,9 +66,12 @@ class Group extends PreGroup {
 class Slider extends Tuple {
   final int buttonwid = sldBtn;
   Slider(int x, int y, int scrollwid, int value, int maxValue, String name) {
-    this(x, y, scrollwid, value, 0, maxValue, -1, name);
+    this(x, y, scrollwid, value, 0, maxValue, false, -1, name);
   }
-  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, int touchId, String name) {
+  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, String name) {
+    this(x, y, scrollwid, value, minValue, maxValue, false, -1, name);
+  }
+  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, boolean scrollPressed, int touchId, String name) {
     this.x=x;
     this.y=y;
     this.value=value;
@@ -78,6 +81,7 @@ class Slider extends Tuple {
       new Button(0, 0, buttonwid, buttonwid, "-"), 
       new Button(buttonwid+margin*2+scrollwid, 0, buttonwid, buttonwid, "+")
     };
+    this.objs[0].pressed=scrollPressed;
   }
   private void updateValue() {
     this.value = objs[0].value;

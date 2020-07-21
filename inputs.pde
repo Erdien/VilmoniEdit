@@ -167,10 +167,11 @@ class Scroll extends Place {
   boolean isPressed(int x, int y) {
     if (touches.length > ptouches) {
       for (int touch=0; touch < touches.length; touch++)
-        if (touches[touch].x >= this.x+x &&
+        if ((touches[touch].x >= this.x+x &&
           touches[touch].x <= this.x+x+this.wid &&
           touches[touch].y >= this.y+y-this.hei &&
-          touches[touch].y <= this.y+y+this.hei*2) {
+          touches[touch].y <= this.y+y+this.hei*2)
+          ) {
           updateValue(x, y);
           this.touchId=touches[touch].id;
           println(this.touchId, "hhhhhggggggggggggggg");
@@ -180,7 +181,7 @@ class Scroll extends Place {
         } else if(touchIndex==touch)
           return true;
     } else if (touches.length == ptouches && this.pressed) {
-      println(this.touchId, "gt");
+      println(this.touchId, this.pressed, "gt");
       updateValue(x, y);
       return this.pressed;
     } else if (touches.length < ptouches) {
