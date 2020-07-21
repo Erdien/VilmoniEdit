@@ -128,6 +128,7 @@ class Genome {
         else if (gBeg!=i) mayLast=-1;
         if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
           this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
+          newimg.fill(0);
           newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
             this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
             (this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width), pSiz);
