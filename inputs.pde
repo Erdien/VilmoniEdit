@@ -173,18 +173,14 @@ class Scroll extends Place {
           touches[touch].y <= this.y+y+this.hei*2) {
           updateValue(x, y);
           this.touchId=touches[touch].id;
-          println(this.touchId, "hhhhhggggggggggggggg");
           touchIndex=touch;
           this.pressed=true;
           return true;
         } else if(touchId==touches[touch].id) {
           touchIndex=touch;
-          println(this.touchId, this.pressed, "hhhhhggg");
-          //this.pressed=true;
           return true;
         }
     } else if (touches.length == ptouches && this.pressed) {
-      //println(this.touchId, this.pressed, "gt");
       updateValue(x, y);
       return this.pressed;
     } else if (touches.length < ptouches) {
