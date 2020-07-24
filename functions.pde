@@ -7,6 +7,24 @@ class Position {
     this.y=y;
   }
 }
+enum types {
+    nan,
+    num,
+    text,
+    col,
+    dress
+  };
+class GeneType {
+  String name;
+  types type;
+  GeneType(String name, types type) {
+    this.name = name;
+    this.type = type;
+  }
+  String getName(){
+    return name;
+  }
+}
 boolean isSimilar(color data, color check, int tollerance) { //tollerance is max distance
   int R1 = data >> 16 & 0xFF;
   int G1 = data >> 8 & 0xFF;
@@ -34,6 +52,14 @@ Group[] groupAssign(int x, int y, Place[] toAssign){
   for(int i=0; i<toAssign.length; i++)
     result[i] = new Group(x, y, new Place[]{myGenome.genes.get(i)});
   return result;
+}
+import java.util.Arrays;
+String[] SelectNames(){
+  GeneType[] carry = geneNames[compareSpieces(myGenome.genes.size())];
+  String[] toReturn = new String[carry.length];
+  for(int i=0; i<toReturn.length; i++)
+    toReturn[i]=carry[i].name;
+  return toReturn;
 }
 int compareSpieces(int genLen){
   switch(genLen){

@@ -34,57 +34,76 @@ final color[] colors = new color[]{
   color(20, 171, 9),    //alt dgreen 18-12
   color(89, 49, 27)     //none       19
 };
-final String[][] geneNames = new String[][]{
+
+/*
+new Tabs(x, y, wid, hei, orientation, thingsToShow,
+ geneNames[howMuchDataNeed(thingsToShow.size())].name),
+
+
+Arrays.stream(geneNames[compareSpieces(myGenome.genes.size())])
+        .map(gene -> gene.name)
+        .toArray(String[]::new);
+String[] SelectNames(){
+  GeneType[] carry = geneNames[index];
+  String[] toReturn = new String[carry.length];
+  for(int i=0; i<toReturn.length; i++)
+    toReturn[i]=carry[i].name;
+  return toReturn;
+}
+*/
+
+
+final GeneType[][] geneNames = new GeneType[][]{
   {
-    "Unknown", //GMO checker
-    "Metabo",  //growth speed
-    "Hydro",   //max hydration
-    "Distro",  //width
-    "Name"
+    new GeneType("Unknown", types.nan), //GMO checker
+    new GeneType("Metabo", types.num),  //growth speed
+    new GeneType("Hydro", types.num),   //max hydration
+    new GeneType("Distro", types.num),  //width
+    new GeneType("Name", types.text)
   },
   {
-    "Unknown",
-    "Wiggo",
-    "Heddo",
-    "Boddo",
-    "Panto",
-    "Senso",
-    "Noodo",
-    "Name"
+    new GeneType("Unknown", types.nan),
+    new GeneType("Wiggo", types.nan),
+    new GeneType("Heddo", types.nan),
+    new GeneType("Boddo", types.nan),
+    new GeneType("Panto", types.nan),
+    new GeneType("Senso", types.nan),
+    new GeneType("Noodo", types.nan),
+    new GeneType("Name", types.text)
   },
   {
-    "Unknown",
-    "Wiggo",
-    "Heddo",
-    "Boddo",
-    "Panto",
-    "",
-    "",
-    "",
-    "",
-    "Name"
+    new GeneType("Unknown", types.nan),
+    new GeneType("Wiggo", types.dress),
+    new GeneType("Heddo", types.dress),
+    new GeneType("Boddo", types.dress),
+    new GeneType("Panto", types.dress),
+    new GeneType("", types.col),
+    new GeneType("", types.col),
+    new GeneType("", types.col),
+    new GeneType("", types.col),
+    new GeneType("Name", types.text)
   },
   {
-    "Unknown",
-    "Masso",
-    "Metabo",
-    "Bendo",
-    "Flexo",
-    "Leggo",
-    "Senso",
-    "Maho",
-    "Mostro",
-    "Motho",
-    "Scecho",
-    "Scestro",
-    "Scetho",
-    "Waho",
-    "Wastro",
-    "Watho",
-    "Name"
+    new GeneType("Unknown", types.nan),
+    new GeneType("Masso", types.num),
+    new GeneType("Metabo", types.num),
+    new GeneType("Bendo", types.num),
+    new GeneType("Flexo", types.num),
+    new GeneType("Leggo", types.num),
+    new GeneType("Senso", types.num),
+    new GeneType("Maho", types.num),
+    new GeneType("Mostro", types.num),
+    new GeneType("Motho", types.num),
+    new GeneType("Scecho", types.num),
+    new GeneType("Scestro", types.num),
+    new GeneType("Scetho", types.num),
+    new GeneType("Waho", types.num),
+    new GeneType("Wastro", types.num),
+    new GeneType("Watho", types.num),
+    new GeneType("Name", types.text)
   },
   {
-    "Tab1"
+    new GeneType("Tab1", types.nan)
   }
 };
 import android.content.Intent;
@@ -209,7 +228,7 @@ void createGUI(){
           new Tabs(-margin, -margin,
             sldBtn*2, (height-myGenome.img.height)/myGenome.genes.size(),
             false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
-            geneNames[compareSpieces(myGenome.genes.size())]),
+            SelectNames()),
           new Group(geneX-margin, 2*margin+4*resizedPSiz+10, new Place[]{new Gene(0,0)})
         }//end pregroup
       ),//end Gene

@@ -140,7 +140,7 @@ void PixelChangeActions(){//protected
     me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
       sldBtn*2, (height-myGenome.img.height)/myGenome.genes.size(),
       false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
-      geneNames[compareSpieces(myGenome.genes.size())]);
+      SelectNames());
     me.kid[0].kid[1].kid[1].valueSet(pTab);
 }
 void PixelNowAction(){
@@ -184,6 +184,6 @@ void GeneChangeActions(){//protected
     me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
       sldBtn*2, (height-myGenome.img.height)/myGenome.genes.size(),
       false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
-      geneNames[compareSpieces(myGenome.genes.size())]);
+      SelectNames());
     me.kid[0].kid[1].kid[1].valueSet(pTab);
 }
