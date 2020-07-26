@@ -34,25 +34,6 @@ final color[] colors = new color[]{
   color(20, 171, 9),    //alt dgreen 18-12
   color(89, 49, 27)     //none       19
 };
-
-/*
-new Tabs(x, y, wid, hei, orientation, thingsToShow,
- geneNames[howMuchDataNeed(thingsToShow.size())].name),
-
-
-Arrays.stream(geneNames[compareSpieces(myGenome.genes.size())])
-        .map(gene -> gene.name)
-        .toArray(String[]::new);
-String[] SelectNames(){
-  GeneType[] carry = geneNames[index];
-  String[] toReturn = new String[carry.length];
-  for(int i=0; i<toReturn.length; i++)
-    toReturn[i]=carry[i].name;
-  return toReturn;
-}
-*/
-
-
 final GeneType[][] geneNames = new GeneType[][]{
   {
     new GeneType("Unknown", types.nan), //GMO checker
@@ -73,10 +54,10 @@ final GeneType[][] geneNames = new GeneType[][]{
   },
   {
     new GeneType("Unknown", types.nan),
-    new GeneType("Wiggo", types.dress),
-    new GeneType("Heddo", types.dress),
-    new GeneType("Boddo", types.dress),
-    new GeneType("Panto", types.dress),
+    new GeneType("Wiggo", types.dress_wiggo),//12
+    new GeneType("Heddo", types.dress_heddo),//24
+    new GeneType("Boddo", types.dress_boddo),//26
+    new GeneType("Panto", types.dress_panto),//9
     new GeneType("", types.col),
     new GeneType("", types.col),
     new GeneType("", types.col),
@@ -159,7 +140,7 @@ void exit(){
 }
 void draw(){
   if(me!=null){
-  background(192);
+  background(64);
   AllActions();
   //line(width/2,0,width/2,height);
   }else if(myGenome!=null)
@@ -213,16 +194,28 @@ void createGUI(){
       
       new Group(margin-myGenome.img.width, margin+myGenome.img.height,
         new Place[]{
+          new Button(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, 2*sldBtn, sldBtn, "Set"),
+          
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"),
           new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 1000, "Accurate"),
-          new Button(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, 2*sldBtn, sldBtn, "Set"),
+         
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Red"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Green"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Blue"),
+        
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 11, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 23, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 25, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"),
+          
           new Label(geneX-margin, -margin, "Now"),
           new Label(geneX-margin, 2*margin+4*resizedPSiz, "New")
         },//end place
         new PreGroup[]{
           new TextBoxes(-margin, -margin-myGenome.img.height,
             new TextBox[]{
-              new TextBox(fileBoxX, fileBoxY, 40*10, rowHei, "")
+              new TextBox(fileBoxX, fileBoxY, 40*10, rowHei, ""),
+              new TextBox(sldBtn*2+margin, 6*margin+6*resizedPSiz+myGenome.img.height, width-2*margin-sldBtn*2, rowHei, "")
             }
           ),
           new Tabs(-margin, -margin,

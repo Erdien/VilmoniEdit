@@ -12,7 +12,10 @@ enum types {
     num,
     text,
     col,
-    dress
+    dress_wiggo,//12
+    dress_heddo,//24
+    dress_boddo,//26
+    dress_panto,//9
   };
 class GeneType {
   String name;
@@ -23,6 +26,49 @@ class GeneType {
   }
   String getName(){
     return name;
+  }
+  Place[] selectGeneInput() {
+    switch(this.type) {
+    case nan :
+      return new Place[]{
+        me.kid[0].kid[1].kid[0].objs[1]
+      };
+    case num :
+      return new Place[]{
+        me.kid[0].kid[1].objs[1], 
+        me.kid[0].kid[1].objs[2]
+      };
+    case text :
+      return new Place[]{
+        me.kid[0].kid[1].kid[0].objs[1]
+      };
+    case col:
+      return new Place[]{
+        me.kid[0].kid[1].objs[3], 
+        me.kid[0].kid[1].objs[4], 
+        me.kid[0].kid[1].objs[5]
+      };
+    case dress_wiggo:
+      return new Place[]{
+        me.kid[0].kid[1].objs[6]
+      };
+    case dress_heddo:
+      return new Place[]{
+        me.kid[0].kid[1].objs[7]
+      };
+    case dress_boddo:
+      return new Place[]{
+        me.kid[0].kid[1].objs[8]
+      };
+    case dress_panto:
+      return new Place[]{
+        me.kid[0].kid[1].objs[9]
+      };
+    default://same as nan
+      return new Place[]{
+        me.kid[0].kid[1].kid[0].objs[1]
+      };
+    }
   }
 }
 boolean isSimilar(color data, color check, int tollerance) { //tollerance is max distance
@@ -53,7 +99,6 @@ Group[] groupAssign(int x, int y, Place[] toAssign){
     result[i] = new Group(x, y, new Place[]{myGenome.genes.get(i)});
   return result;
 }
-import java.util.Arrays;
 String[] SelectNames(){
   GeneType[] carry = geneNames[compareSpieces(myGenome.genes.size())];
   String[] toReturn = new String[carry.length];
