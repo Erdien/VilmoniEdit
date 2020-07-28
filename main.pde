@@ -94,12 +94,17 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.os.Environment;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.text.InputType;
+import android.widget.EditText;
+import android.view.WindowManager;
 import android.graphics.Rect;
 Intent myIntent;
 Activity myActivity;
 Context myContext;
-//MediaScannerConnection myMedia;
+//InputMethodManager myInputMethodManager = (InputMethodManager);
 View myView;
+EditText myEditText;
 FileUtils myResolver;
  void onActivityResult(int requestCode, int resultCode, Intent data){
   if(requestCode==10)
@@ -108,11 +113,10 @@ FileUtils myResolver;
 }
 void checkPermission(boolean granted){
   if(granted){
-    myActivity = this.getActivity();
+    myActivity = this.getActivity(); 
     myIntent = new Intent(Intent.ACTION_GET_CONTENT);
     myContext = this.getContext();
-    //myMedia = new MediaScannerConnection(myContext, null);
-    //myMedia.connect();
+    //myEditText = new EditText(myContext);
     myView = myActivity.getWindow().getDecorView();
     myResolver = new FileUtils();
     myIntent.setType("image/*");
@@ -141,12 +145,22 @@ void exit(){
 void draw(){
   if(me!=null){
   background(64);
+  showSoftKeyboard();
   AllActions();
   //line(width/2,0,width/2,height);
   }else if(myGenome!=null)
   {
     createGUI();
   }
+}
+public void showSoftKeyboard() {
+    Context context = surface.getContext();
+    View view = surface.getRootView();
+    myEditText = new EditText(context);
+    myEditText.requestFocus();
+    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    //myEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+    imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
 }
 void createGUI(){
   textSize(16);

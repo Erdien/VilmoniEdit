@@ -2,6 +2,7 @@
 void AllActions(){
   image(myGenome.img, 0 ,0);
   me.isPressed();
+  showInp();
   AllPresentFileAction();
   AllSetNewFilePos();
   AllUpdateAction();
