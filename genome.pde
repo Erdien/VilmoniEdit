@@ -30,7 +30,7 @@ class Gene extends Place{
     this.hei=this.wid;
     this.points = new ArrayList<Pixel>();
     for(int i=0; i<floor(log(value)/log(12))+5; i++){
-      this.points.add(0, new Pixel(i,colors[value%12]));
+      this.points.add(0, new Pixel    (i,colors[value%12]));
       value-=value%12;
       value=value/12;
     }
@@ -42,9 +42,9 @@ class Gene extends Place{
     noStroke();
     for(int i=0; i<points.size(); i++){
       fill(colors[this.points.get(i).value]);
-      rect(floor((this.x/this.wid+i)%
-      ((width-geneX)/this.wid))*this.wid,
-        this.y+(floor((this.x/this.wid+i)/((width-geneX)/this.wid)))*this.wid, this.hei, this.hei);
+      rect(floor(i%((width-geneX)/this.wid))*this.wid,
+        floor(i/((width-geneX)/this.wid))*this.wid, 
+        this.hei, this.hei);
     }
     stroke(0);
   }
@@ -57,11 +57,14 @@ class Genome {
   ArrayList<Pixel> points = new ArrayList<Pixel>();
   ArrayList<Gene> genes = new ArrayList<Gene>();
   PImage img;
+  int ScrImgWid;
+  int ScrImgHei;
   String path;
   Genome(String path) {
     this.img=loadImage(path);
     this.path=path.split("/")[path.split("/").length-1];
     this.path=this.path.split("\\.")[0];
+    quickSetup();
     getBegin();
     int gBeg=0;
     int mayLast=-1;
@@ -86,15 +89,27 @@ class Genome {
       {
       }
   }
+  void quickSetup(){
+    float scale = (float)3/4;
+    final int spaceX = 200;
+    final int spaceY = margin*3+rowHei+sldBtn + ;
+      this.ScrImgWid=(this.img.width<width*scale)?this.img.width:floor(width*scale);
+      this.ScrImgHei=this.img.height*this.ScrImgWid/this.img.width;
+    if ((this.img.height<height*scale?this.img.height:height*scale)<this.ScrImgHei) {
+      this.ScrImgHei=(this.img.height<height*scale)?this.img.height:floor(height*scale);
+      this.ScrImgWid=this.img.width*this.ScrImgHei/this.img.height;
+    }
+  }
   private void getBegin() {
     for (int point=this.img.height-ceil(pSiz/2); point>0; point-=pSiz)
       if (isSimilar(this.img.get(floor(pSiz/2), point), colors[16], 8)) {
         this.beginPixel = new Position(floor(pSiz/2), point+pSiz);
         break;
       }
-    if (this.beginPixel==null)
-      //noLoop();
+    if (this.beginPixel==null) {
+      noLoop();
       exit();
+    }
     
   }
   void drawArrow(int startX, int startY, int where){
@@ -102,8 +117,11 @@ class Genome {
     noStroke();
     fill(0);
     translate(startX, startY);
-    translate(this.beginPixel.x, this.beginPixel.y);
-    translate(where*pSiz%this.img.width, floor(where*pSiz/this.img.width)*pSiz);
+    translate(this.beginPixel.x*this.ScrImgWid/this.img.width, this.beginPixel.y*this.ScrImgHei/this.img.height);
+    translate(floor(where%(this.img.width/pSiz))*pSiz*this.ScrImgWid/this.img.width,
+      floor(where/(this.img.width/pSiz))*pSiz*this.ScrImgHei/this.img.height);
+    //translate(where*pSiz%this.img.width*this.ScrImgWid/this.img.width, 
+    //  floor(where*pSiz/this.img.width)*pSiz*this.ScrImgHei/this.img.height);
     triangle(10,-20,-10,-20,0,0);
     stroke(0);
     popMatrix();
@@ -129,9 +147,9 @@ class Genome {
         if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
           this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
           newimg.fill(0);
-          newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
-            this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
-            (this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width), pSiz);
+          newimg.rect(floor((this.beginPixel.x/pSiz+i)%(this.img.width/pSiz))*pSiz,
+            this.beginPixel.y-floor(pSiz/2)+floor((this.beginPixel.x/pSiz+i)/(this.img.width/pSiz))*pSiz, 
+            this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width, pSiz);
           break;
         }
         if (mayLast==-1 && i!=0)
@@ -139,12 +157,18 @@ class Genome {
         gBeg=i+1;
       }
       newimg.fill(colors[points.get(i).value]);
-      newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
-        this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
+      newimg.rect(floor((this.beginPixel.x/pSiz+i)%(this.img.width/pSiz))*pSiz,
+        this.beginPixel.y-floor(pSiz/2)+floor((this.beginPixel.x/pSiz+i)/(this.img.width/pSiz))*pSiz, 
         pSiz, pSiz);
+        
+        
+      //newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
+        //this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
+        //pSiz, pSiz);
     }
     newimg.endDraw();
     this.img = newimg.get();
+    quickSetup();
   }
   void updatePixel(){
     PGraphics newimg = createGraphics(this.img.width,
@@ -181,5 +205,6 @@ class Genome {
             (this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width), pSiz);
     newimg.endDraw();
     this.img=newimg.get();
+    quickSetup();
   }
 }

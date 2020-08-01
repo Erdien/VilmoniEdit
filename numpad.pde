@@ -3,7 +3,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputMethodManager;/*
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;

@@ -1,8 +1,8 @@
 /** triggers and actions */
 void AllActions(){
-  image(myGenome.img, 0 ,0);
+  image(myGenome.img, 0 ,0 , myGenome.ScrImgWid, myGenome.ScrImgHei);
   me.isPressed();
-  showInp();
+  //showInp();
   AllPresentFileAction();
   AllSetNewFilePos();
   AllUpdateAction();
@@ -167,10 +167,11 @@ void GeneSliderAction(){
     me.kid[0].kid[1].objs[0].valueSet(0);
 }
 void GeneNewAction(){
+  //switch()
   me.kid[0].kid[1].kid[2].objs[0] = new Gene(me.kid[0].kid[1].objs[0].value*1000+me.kid[0].kid[1].objs[1].value, 0);
 }
 void GeneSetAction(){
-  if(me.kid[0].kid[1].objs[2].touched){
+  if(me.kid[0].kid[1].objs[0].touched){
     if(me.kid[0].kid[1].kid[1].value>0)
       myGenome.genes.set(me.kid[0].kid[1].kid[1].value-1, new Gene(me.kid[0].kid[1].objs[0].value*1000+me.kid[0].kid[1].objs[1].value, 0));
     GeneChangeActions();

@@ -1,6 +1,6 @@
 Genome myGenome;
 //Position beginPixel;
-final int pSiz = 8;
+final int pSiz =   8;
 final int resizedPSiz = 32;
 final int rowHei = 30;
 final int margin = 10;
@@ -94,17 +94,11 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.os.Environment;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.text.InputType;
-import android.widget.EditText;
-import android.view.WindowManager;
 import android.graphics.Rect;
 Intent myIntent;
 Activity myActivity;
 Context myContext;
-//InputMethodManager myInputMethodManager = (InputMethodManager);
 View myView;
-EditText myEditText;
 FileUtils myResolver;
  void onActivityResult(int requestCode, int resultCode, Intent data){
   if(requestCode==10)
@@ -113,10 +107,9 @@ FileUtils myResolver;
 }
 void checkPermission(boolean granted){
   if(granted){
-    myActivity = this.getActivity(); 
+    myActivity = this.getActivity();
     myIntent = new Intent(Intent.ACTION_GET_CONTENT);
     myContext = this.getContext();
-    //myEditText = new EditText(myContext);
     myView = myActivity.getWindow().getDecorView();
     myResolver = new FileUtils();
     myIntent.setType("image/*");
@@ -145,7 +138,7 @@ void exit(){
 void draw(){
   if(me!=null){
   background(64);
-  showSoftKeyboard();
+  //showSoftKeyboard();
   AllActions();
   //line(width/2,0,width/2,height);
   }else if(myGenome!=null)
@@ -156,8 +149,6 @@ void draw(){
 public void showSoftKeyboard() {
     Context context = surface.getContext();
     View view = surface.getRootView();
-    myEditText = new EditText(context);
-    myEditText.requestFocus();
     InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     //myEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
     imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
@@ -168,19 +159,19 @@ void createGUI(){
   //int restWid = width-myGenome.img.width;
   int sldCst=sldBtn*2+margin*2;
   int fileBoxX = sldBtn*2+margin;
-  int fileBoxY = height-200;
-  geneX = myGenome.img.width + margin;
-  me = new Group(myGenome.img.width, 0,
+  int fileBoxY = height-rowHei-sldBtn-margin;
+  geneX = myGenome.ScrImgWid + margin;
+  me = new Group(myGenome.ScrImgWid, 0,
   new Place[]{
-    new Button(fileBoxX-myGenome.img.width, fileBoxY+rowHei+margin, sldBtn*2, sldBtn, "Update"),
-    new Button(fileBoxX-myGenome.img.width+40*10+margin, fileBoxY-margin, sldBtn*2, sldBtn, "Present File"),
-    new Label(fileBoxX-myGenome.img.width, fileBoxY-margin, "File Name:"),
+    new Button(fileBoxX-myGenome.ScrImgWid, fileBoxY+rowHei+margin, sldBtn*2, sldBtn, "Update"),
+    new Button(fileBoxX-myGenome.ScrImgWid+40*10+margin, fileBoxY-margin, sldBtn*2, sldBtn, "Present File"),
+    new Label(fileBoxX-myGenome.ScrImgWid, fileBoxY-margin, "File Name:"),      //margin*3+rowHei+sldBtn
   },
   new PreGroup[]{
-    new Tabs(0, 0, (width-myGenome.img.width)/4, rowHei*3, true, 
+    new Tabs(0, 0, (width-myGenome.ScrImgWid)/4, rowHei*3, true, 
     new Group[]{
     
-      new Group(margin-myGenome.img.width, margin+myGenome.img.height,
+      new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
           new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel"),
           new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
@@ -198,7 +189,7 @@ void createGUI(){
           new Label(width/2-margin, sldBtn+margin, "New"),
         },//end Place
         new PreGroup[]{
-          new TextBoxes(-margin, -margin-myGenome.img.height,
+          new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
             new TextBox[]{
               new TextBox(fileBoxX, fileBoxY, 40*10, rowHei, "")
             }
@@ -206,7 +197,7 @@ void createGUI(){
         }
       ),//end Pixel
       
-      new Group(margin-myGenome.img.width, margin+myGenome.img.height,
+      new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
           new Button(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, 2*sldBtn, sldBtn, "Set"),
           
@@ -226,14 +217,14 @@ void createGUI(){
           new Label(geneX-margin, 2*margin+4*resizedPSiz, "New")
         },//end place
         new PreGroup[]{
-          new TextBoxes(-margin, -margin-myGenome.img.height,
+          new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
             new TextBox[]{
               new TextBox(fileBoxX, fileBoxY, 40*10, rowHei, ""),
-              new TextBox(sldBtn*2+margin, 6*margin+6*resizedPSiz+myGenome.img.height, width-2*margin-sldBtn*2, rowHei, "")
+              new TextBox(sldBtn*2+margin, 6*margin+6*resizedPSiz+myGenome.ScrImgHei, width-2*margin-sldBtn*2, rowHei, "")
             }
           ),
           new Tabs(-margin, -margin,
-            sldBtn*2, (height-myGenome.img.height)/myGenome.genes.size(),
+            sldBtn*2, (height-myGenome.ScrImgHei)/myGenome.genes.size(),
             false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
             SelectNames()),
           new Group(geneX-margin, 2*margin+4*resizedPSiz+10, new Place[]{new Gene(0,0)})

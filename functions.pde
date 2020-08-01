@@ -84,8 +84,8 @@ boolean isSimilar(color data, color check, int tollerance) { //tollerance is max
 color chain(int place, Genome code) {
   
   return code.img.get(
-    (code.beginPixel.x+pSiz*place)%code.img.width, 
-    code.beginPixel.y+pSiz*floor(pSiz*place/code.img.width)
+    code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz, 
+    code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
 }
 int idToTouch(int id) { //not used, can be used to upgrade touch/click event
