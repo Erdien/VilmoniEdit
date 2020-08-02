@@ -1,6 +1,5 @@
 Genome myGenome;
-//Position beginPixel;
-final int pSiz =   8;
+final int pSiz = 8;
 final int resizedPSiz = 32;
 final int rowHei = 30;
 final int margin = 10;
@@ -95,6 +94,17 @@ import android.content.ContentValues;
 import android.os.Environment;
 import android.view.View;
 import android.graphics.Rect;
+/*
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.zip.GZIPInputStream;
+import android.content.res.AssetManager;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;*/
 Intent myIntent;
 Activity myActivity;
 Context myContext;
@@ -103,7 +113,7 @@ FileUtils myResolver;
  void onActivityResult(int requestCode, int resultCode, Intent data){
   if(requestCode==10)
      if(resultCode==Activity.RESULT_OK)
-     myGenome = new Genome(myResolver.getPath(myContext, data.getData()));
+       myGenome = new Genome(myResolver.getPath(myContext, data.getData()));
 }
 void checkPermission(boolean granted){
   if(granted){
@@ -136,13 +146,13 @@ void exit(){
   System.exit(0);
 }
 void draw(){
+  if(frameCount==10)
+    showSoftKeyboard();
   if(me!=null){
   background(64);
-  //showSoftKeyboard();
   AllActions();
   //line(width/2,0,width/2,height);
-  }else if(myGenome!=null)
-  {
+  }else if(myGenome!=null) {
     createGUI();
   }
 }
@@ -157,6 +167,7 @@ void createGUI(){
   textSize(16);
   //beginPixel=beginPixel(myImg);
   //int restWid = width-myGenome.img.width;
+  //println(myGenome.img.width, myGenome.img.height);
   int sldCst=sldBtn*2+margin*2;
   int fileBoxX = sldBtn*2+margin;
   int fileBoxY = height-rowHei-sldBtn-margin;

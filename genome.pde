@@ -30,7 +30,7 @@ class Gene extends Place{
     this.hei=this.wid;
     this.points = new ArrayList<Pixel>();
     for(int i=0; i<floor(log(value)/log(12))+5; i++){
-      this.points.add(0, new Pixel    (i,colors[value%12]));
+      this.points.add(0, new Pixel(i,colors[value%12]));
       value-=value%12;
       value=value/12;
     }
@@ -91,12 +91,12 @@ class Genome {
   }
   void quickSetup(){
     float scale = (float)3/4;
-    final int spaceX = 200;
-    final int spaceY = margin*3+rowHei+sldBtn + ;
-      this.ScrImgWid=(this.img.width<width*scale)?this.img.width:floor(width*scale);
+    final int spaceX = sldBtn*4;
+    final int spaceY = margin*3+rowHei+sldBtn + (sldBtn+margin)*4+sldBtn;
+      this.ScrImgWid=(this.img.width<width*scale)?this.img.width:width-spaceX;
       this.ScrImgHei=this.img.height*this.ScrImgWid/this.img.width;
-    if ((this.img.height<height*scale?this.img.height:height*scale)<this.ScrImgHei) {
-      this.ScrImgHei=(this.img.height<height*scale)?this.img.height:floor(height*scale);
+    if ((this.img.height<height*scale?this.img.height:height-spaceY)<this.ScrImgHei) {
+      this.ScrImgHei=(this.img.height<height*scale)?this.img.height:height-spaceY;
       this.ScrImgWid=this.img.width*this.ScrImgHei/this.img.height;
     }
   }
@@ -187,15 +187,15 @@ class Genome {
       for (Pixel pix : gene.points) {
         this.points.add(new Pixel(i, colors[pix.value]));
         newimg.fill(colors[pix.value]);
-        newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
-          this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
-          pSiz, pSiz);
+        newimg.rect(floor((this.beginPixel.x/pSiz+i)%(this.img.width/pSiz))*pSiz,
+        this.beginPixel.y-floor(pSiz/2)+floor((this.beginPixel.x/pSiz+i)/(this.img.width/pSiz))*pSiz, 
+        pSiz, pSiz);
         i++;
       }
       this.points.add(new Pixel(i, colors[15/*random(4)*/]));
       newimg.fill(colors[this.points.get(i).value]);
-      newimg.rect((this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width,
-        this.beginPixel.y-floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*i)/this.img.width), 
+      newimg.rect(floor((this.beginPixel.x/pSiz+i)%(this.img.width/pSiz))*pSiz,
+        this.beginPixel.y-floor(pSiz/2)+floor((this.beginPixel.x/pSiz+i)/(this.img.width/pSiz))*pSiz, 
         pSiz, pSiz);
       i++;
       igen++;

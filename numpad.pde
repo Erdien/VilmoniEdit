@@ -94,4 +94,4 @@ public void onResume() {
   super.onResume();
    //show the softinput keyboard at start
     //act.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-}
+}//*/

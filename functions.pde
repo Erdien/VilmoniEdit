@@ -82,11 +82,16 @@ boolean isSimilar(color data, color check, int tollerance) { //tollerance is max
   return distance<=tollerance;
 }
 color chain(int place, Genome code) {
-  
   return code.img.get(
     code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz, 
     code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
+}
+int AlignedX(int shift, int where, int wid, int cellSiz) {
+  return floor((shift/cellSiz+where)%(wid/cellSiz))*cellSiz;
+}
+int AlignedY(int shiftY, int shiftX, int where, int wid, int cellSiz) {
+  return shiftY+floor((shiftX/cellSiz+where)/(wid/cellSiz))*cellSiz;
 }
 int idToTouch(int id) { //not used, can be used to upgrade touch/click event
   for (int i=0; i<touches.length; i++)
