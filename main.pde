@@ -6,7 +6,7 @@ final int margin = 10;
 final int sldBtn = 50;
 int geneX;
 int ptouches;
-Place selectedTextBox;
+Place selectedTextBox;ogphph
 Group me;
 Group[] mex;
 final color[] colors = new color[]{
