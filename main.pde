@@ -94,6 +94,16 @@ import android.content.ContentValues;
 import android.os.Environment;
 import android.view.View;
 import android.graphics.Rect;
+
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+/*
+import android.support.v4.content.ContextCompat;
+import android.support.v4.app.ActivityCompat;
+import android.Manifest;
+import android.content.pm.PackageManager;
 /*
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -131,8 +141,21 @@ void checkPermission(boolean granted){
   }
 }
 void setup() {
-  if (!hasPermission("android.permission.WRITE_EXTERNAL_STORAGE"))
-    requestPermission("android.permission.WRITE_EXTERNAL_STORAGE");
+ /* if (ContextCompat.checkSelfPermission(surface.getContext(), 
+  Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+    println("totot");
+  }else{
+    println("poss");
+  }
+if (ContextCompat.checkSelfPermission(surface.getContext(), 
+  Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+    println("t");
+} else {
+  println("n");
+    ActivityCompat.requestPermissions(surface.getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+}*/
+  //if (!hasPermission("android.permission.WRITE_EXTERNAL_STORAGE"))
+  //  requestPermission("android.permission.WRITE_EXTERNAL_STORAGE");
   if (!hasPermission("android.permission.READ_EXTERNAL_STORAGE")) 
     requestPermission("android.permission.READ_EXTERNAL_STORAGE", "checkPermission");
   else checkPermission(true);
