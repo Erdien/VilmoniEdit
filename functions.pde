@@ -24,9 +24,9 @@ class GeneType {
     this.name = name;
     this.type = type;
   }
-  String getName(){
-    return name;
-  }
+  //String getName(){
+  //  return name;
+  //}
   Place[] selectGeneInput() {
     switch(this.type) {
     case nan :

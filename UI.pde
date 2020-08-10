@@ -209,17 +209,18 @@ class ColorTabs extends Tuple{
   }
 }
 class Tabs extends PreGroup {
-  Tabs(int x, int y, int wid, int hei, boolean orientation, Group[] kid, String[] names) {
+  Tabs(int x, int y, float wid, float hei, boolean orientation, Group[] kid, String[] names) {
     this.x=x;
     this.y=y;
     this.objs=new Place[kid.length];
-    for (int i=0; i<kid.length; i++)
+    for (int i=0; i<kid.length; i++){
       if (orientation)
-        this.objs[i]=new Switch(i*wid, 0, wid, hei, names.length>i?names[i]:("Tab"+(i+1)));
+        this.objs[i]=new Switch(floor(i*wid), 0, floor((i+1)*wid)-floor(i*wid), (int)hei, names.length>i?names[i]:("Tab"+(i+1)));
       else
-        this.objs[i]=new Switch(0, i*hei, wid, hei, names.length>i?names[i]:("Tab"+(i+1)));
-    this.wid=orientation?wid*kid.length:wid;
-    this.hei=orientation?hei:hei*kid.length;
+        this.objs[i]=new Switch(0, floor(i*hei), (int)wid, floor((i+1)*hei)-floor(i*hei), names.length>i?names[i]:("Tab"+(i+1)));
+        }
+    this.wid=orientation?floor(wid*kid.length):floor(wid);
+    this.hei=orientation?floor(hei):floor(hei*kid.length);
     this.kid=kid;
     for(PreGroup i : this.kid)
       i.shown=false;

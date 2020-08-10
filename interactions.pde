@@ -24,6 +24,7 @@ void GeneActions(){
   GeneSliderAction();
   GeneNewAction();
   GeneSetAction();
+  GeneTypeAction();
 }
 void AllPresentFileAction(){
   if(me.objs[1].touched){
@@ -84,6 +85,18 @@ void AllUpdateAction(){
     
   }
 }
+void AllAfterImgSizChange(){
+  for(int i = 0; i<me.kid[0].kid.length;i++){
+    me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;
+    me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;
+  }
+  int pTab=me.kid[0].kid[1].kid[1].value;
+    me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
+      sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
+      false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
+      SelectNames());
+    me.kid[0].kid[1].kid[1].valueSet(pTab);
+}
 void PrepareArrow(){
   switch (me.kid[0].value){
     case 1:
@@ -137,12 +150,7 @@ void PixelRemoveAction(){
 }
 void PixelChangeActions(){//protected
   myGenome.updateGenes();
-    int pTab=me.kid[0].kid[1].kid[1].value;
-    me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
-      sldBtn*2, (height-myGenome.ScrImgHei)/myGenome.genes.size(),
-      false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
-      SelectNames());
-    me.kid[0].kid[1].kid[1].valueSet(pTab);
+  AllAfterImgSizChange();
 }
 void PixelNowAction(){
   me.kid[0].kid[0].objs[7].value=colors[myGenome.points.get(constrain(me.kid[0].kid[0].objs[0].value, 0, myGenome.points.size()-1)).value];
@@ -180,12 +188,22 @@ void GeneSetAction(){
     me.kid[0].kid[0].objs[0].valueSet(pSld);
   }
 }
+void GeneTypeAction(){
+  for(int i=1;i<10;i++)
+    me.kid[0].kid[1].objs[i].shown=false;
+  me.kid[0].kid[1].kid[0].objs[1].shown=false;
+    GeneType type;
+  if(me.kid[0].kid[1].kid[1].value==0) return;
+  else if(compareSpieces(myGenome.genes.size())==4)
+    type = geneNames[4][0];
+  else
+    type = geneNames[compareSpieces(myGenome.genes.size())][me.kid[0].kid[1].kid[1].value-1];
+  for(Place elem : type.selectGeneInput())
+    elem.shown=true;
+}
 void GeneChangeActions(){//protected
   myGenome.updatePixel();
-    int pTab=me.kid[0].kid[1].kid[1].value;
-    me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
-      sldBtn*2, (height-myGenome.ScrImgHei)/myGenome.genes.size(),
-      false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
-      SelectNames());
-    me.kid[0].kid[1].kid[1].valueSet(pTab);
+  AllAfterImgSizChange();
+  //me.x=myGenome.ScrImgWid;
+ // me.kid[0].kid[0].x=
 }

@@ -3,10 +3,11 @@ final int pSiz = 8;
 final int resizedPSiz = 32;
 final int rowHei = 30;
 final int margin = 10;
+final int textSize = 10;
 final int sldBtn = 50;
 int geneX;
 int ptouches;
-Place selectedTextBox;ogphph
+Place selectedTextBox;
 Group me;
 Group[] mex;
 final color[] colors = new color[]{
@@ -195,14 +196,14 @@ void createGUI(){
   int fileBoxX = sldBtn*2+margin;
   int fileBoxY = height-rowHei-sldBtn-margin;
   geneX = myGenome.ScrImgWid + margin;
-  me = new Group(myGenome.ScrImgWid, 0,
+  me = new Group(0, 0,
   new Place[]{
-    new Button(fileBoxX-myGenome.ScrImgWid, fileBoxY+rowHei+margin, sldBtn*2, sldBtn, "Update"),
-    new Button(fileBoxX-myGenome.ScrImgWid+40*10+margin, fileBoxY-margin, sldBtn*2, sldBtn, "Present File"),
-    new Label(fileBoxX-myGenome.ScrImgWid, fileBoxY-margin, "File Name:"),      //margin*3+rowHei+sldBtn
+    new Button(fileBoxX, fileBoxY+rowHei+margin, sldBtn*2, sldBtn, "Update"),
+    new Button(fileBoxX+40*10+margin, fileBoxY-margin, sldBtn*2, sldBtn, "Present File"),
+    new Label(fileBoxX, fileBoxY-margin, "File Name:"),      //margin*3+rowHei+sldBtn
   },
   new PreGroup[]{
-    new Tabs(0, 0, (width-myGenome.ScrImgWid)/4, rowHei*3, true, 
+    new Tabs(myGenome.ScrImgWid, 0, (float)(width-myGenome.ScrImgWid)/4, rowHei*3, true, 
     new Group[]{
     
       new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
@@ -247,8 +248,8 @@ void createGUI(){
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 25, "Dress"),
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"),
           
-          new Label(geneX-margin, -margin, "Now"),
-          new Label(geneX-margin, 2*margin+4*resizedPSiz, "New")
+          new Label(geneX-margin, -textSize, "Now"),
+          new Label(geneX-margin, 3*margin+4*resizedPSiz-textSize, "New")
         },//end place
         new PreGroup[]{
           new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
@@ -258,7 +259,7 @@ void createGUI(){
             }
           ),
           new Tabs(-margin, -margin,
-            sldBtn*2, (height-myGenome.ScrImgHei)/myGenome.genes.size(),
+            sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
             false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
             SelectNames()),
           new Group(geneX-margin, 2*margin+4*resizedPSiz+10, new Place[]{new Gene(0,0)})

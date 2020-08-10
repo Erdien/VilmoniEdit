@@ -90,13 +90,12 @@ class Genome {
       }
   }
   void quickSetup(){
-    float scale = (float)3/4;
     final int spaceX = sldBtn*4;
-    final int spaceY = margin*3+rowHei+sldBtn + (sldBtn+margin)*4+sldBtn;
-      this.ScrImgWid=(this.img.width<width*scale)?this.img.width:width-spaceX;
+    final int spaceY = margin*3+rowHei+sldBtn + (sldBtn+margin)*4+sldBtn*4;
+      this.ScrImgWid=(this.img.width<width-spaceX)?this.img.width:width-spaceX;
       this.ScrImgHei=this.img.height*this.ScrImgWid/this.img.width;
-    if ((this.img.height<height*scale?this.img.height:height-spaceY)<this.ScrImgHei) {
-      this.ScrImgHei=(this.img.height<height*scale)?this.img.height:height-spaceY;
+    if ((this.img.height<height-spaceY?this.img.height:height-spaceY)<this.ScrImgHei) {
+      this.ScrImgHei=(this.img.height<height-spaceY)?this.img.height:height-spaceY;
       this.ScrImgWid=this.img.width*this.ScrImgHei/this.img.height;
     }
   }
