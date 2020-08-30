@@ -6,7 +6,7 @@ class Place {
   int x=0;
   int y=0;
   int wid=0;
-  float hei=0;
+  int hei=0;
   //int type=0;//nothing, button, switch, scroll
   int value=0;
   int barmax=1; //have to delete/make scroll only
@@ -240,7 +240,6 @@ class TextBox extends Place {
 }
 void keyPressed(){
   println(keyCode);
-  println(selectedTextBox);
   if(selectedTextBox!=null){
   switch(keyCode){
   case 67:
@@ -257,7 +256,9 @@ void keyPressed(){
     selectedTextBox.name += key;
   else if(keyCode>6 && keyCode<17)              //for numpad //numpad is useles (slider)
     selectedTextBox.name += key;
-  else if(keyCode==59 || keyCode==24 || keyCode==25){}
+  else if(keyCode==59 || keyCode==60 || 
+    keyCode==24 || keyCode==25 || 
+    keyCode==57 || keyCode==58){}
   else                                          //for testing
     selectedTextBox.name += key;
   }}else

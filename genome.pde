@@ -22,23 +22,53 @@ class Gene extends Place{
   Gene(ArrayList<Pixel> points, int begin) {
     this.wid=resizedPSiz;
     this.hei=this.wid;
+    for(int i=0;i<points.size();i++)
+      this.value += pow(points.get(i).value, i);
     this.points = points;
     this.begin = begin;
   }
-  Gene(int value, int begin) {
+  Gene(long value, int begin) {
     this.wid=resizedPSiz;
     this.hei=this.wid;
+    if(value<=Integer.MAX_VALUE)
+      this.value=(int)value;
+    this.name=str(value);
     this.points = new ArrayList<Pixel>();
-    for(int i=0; i<floor(log(value)/log(12))+5; i++){
-      this.points.add(0, new Pixel(i,colors[value%12]));
-      value-=value%12;
-      value=value/12;
+    //println( value, ((int)value%12L+12L)%12);
+    for(int i=0;;i++){
+      this.points.add(0, new Pixel(i,colors[(int)(value%12L)]));
+      //value-=value%12;
+      value/=12;
+      if(value==0) break;
     }
-    //this.points = points;
-    this.begin = begin;
+  }
+  Gene(String value, int begin) {
+    this.wid=resizedPSiz;
+    this.hei=this.wid;
+    this.name=value;
+    this.points = new ArrayList<Pixel>();
+    int i=0;
+    Charset targetCharset=Charset.forName("latin-1");
+    if(value.length()>0) {
+      boolean ability = targetCharset.newEncoder().canEncode(value.substring(value.length()-1));
+    if (!ability)
+      value=value.substring(0, value.length()-1);
+    }
+    //println(value);
+    byte[] name=reverse(value.getBytes(targetCharset));
+    //println("t1");
+    for(int letter : name){
+      letter=letter<0?letter+255:letter;
+      //println(letter);
+      for(;;i++){
+        this.points.add(0, new Pixel(i,colors[int(letter)%12]));
+        letter=letter/12;
+        if(letter==0 && i%2==0) break;
+      }
+      //println(value, (i<digits(value)-1?"ex":"ne"), i, digits(value));
+    }
   }
   void drawMe(){
-    //println(floor(log(value)/log(12)));
     noStroke();
     for(int i=0; i<points.size(); i++){
       fill(colors[this.points.get(i).value]);

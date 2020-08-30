@@ -58,10 +58,10 @@ final GeneType[][] geneNames = new GeneType[][]{
     new GeneType("Heddo", types.dress_heddo),//24
     new GeneType("Boddo", types.dress_boddo),//26
     new GeneType("Panto", types.dress_panto),//9
-    new GeneType("", types.col),
-    new GeneType("", types.col),
-    new GeneType("", types.col),
-    new GeneType("", types.col),
+    new GeneType("Boddo\ncolor", types.col),
+    new GeneType("Eyo\ncolor", types.col),
+    new GeneType("Torso\ncolor", types.col),
+    new GeneType("Panto\ncolor", types.col),
     new GeneType("Name", types.text)
   },
   {
@@ -100,6 +100,8 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import java.nio.charset.Charset;
 /*
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
@@ -210,7 +212,7 @@ void createGUI(){
         new Place[]{
           new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel"),
           new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
-            new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "", "", "", ""}),
+            new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""}),
           //new Slider(0, 0, width/2-sldCst-margin*3/2, 0, myGenome.points.size()-1, "Pixel"),
           //new Slider(width/2+margin-margin*3/2, 0, width/2-sldCst-margin*3/2, 0, 15, "Value"),
           new Button(0, sldBtn+margin, sldBtn*2, sldBtn, "Insert before"),
@@ -234,21 +236,21 @@ void createGUI(){
       
       new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
-          new Button(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, 2*sldBtn, sldBtn, "Set"),
+          new Button(sldBtn*2, 4*margin+6*resizedPSiz, 2*sldBtn, sldBtn, "Set"),
           
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"),
           new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 1000, "Accurate"),
          
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Red"),
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Green"),
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Blue"),
+          new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Green"),
+          new Slider(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Blue"),
         
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 11, "Dress"),
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 23, "Dress"),
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 25, "Dress"),
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"),
           
-          new Label(geneX-margin, -textSize, "Now"),
+          new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei-margin, "Now"),
           new Label(geneX-margin, 3*margin+4*resizedPSiz-textSize, "New")
         },//end place
         new PreGroup[]{
@@ -260,7 +262,7 @@ void createGUI(){
           ),
           new Tabs(-margin, -margin,
             sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
-            false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
+            false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
             SelectNames()),
           new Group(geneX-margin, 2*margin+4*resizedPSiz+10, new Place[]{new Gene(0,0)})
         }//end pregroup
@@ -287,7 +289,7 @@ void createGUI(){
       )//end 2nd group
       
     },
-    new String[]{"Pixel", "Gene", "Name", "Credits"})
+    new String[]{"Pixel", "Gene", "idk\nTab for testing", "Options", "Credits"})
     });
   
   //me.kid[0].kid[1].kid[1].objs[0].pressed=true;

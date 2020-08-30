@@ -29,16 +29,16 @@ class GeneType {
   //}
   Place[] selectGeneInput() {
     switch(this.type) {
-    case nan :
+    case nan:
       return new Place[]{
         me.kid[0].kid[1].kid[0].objs[1]
       };
-    case num :
+    case num:
       return new Place[]{
         me.kid[0].kid[1].objs[1], 
         me.kid[0].kid[1].objs[2]
       };
-    case text :
+    case text:
       return new Place[]{
         me.kid[0].kid[1].kid[0].objs[1]
       };
@@ -87,6 +87,20 @@ color chain(int place, Genome code) {
     code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
 }
+int digits(int value){
+  for(int i=1;;i++) {
+    if (value<12) return i;
+    value/=12;
+  }
+}
+long parseLong(String value){
+  try{
+    return Long.parseLong(value);
+  }catch(Exception e){return 0L;}
+}
+//String str(double val){
+//  return "";
+//}
 int AlignedX(int shift, int where, int wid, int cellSiz) {
   return floor((shift/cellSiz+where)%(wid/cellSiz))*cellSiz;
 }

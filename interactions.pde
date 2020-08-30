@@ -1,29 +1,30 @@
 /** triggers and actions */
 void AllActions(){
-  image(myGenome.img, 0 ,0 , myGenome.ScrImgWid, myGenome.ScrImgHei);
+  image(myGenome.img, 0 , 0, myGenome.ScrImgWid, myGenome.ScrImgHei);
   me.isPressed();
   //showInp();
   AllPresentFileAction();
   AllSetNewFilePos();
   AllUpdateAction();
   PrepareArrow();
-  PixelActions();
-  GeneActions();
+  if (me.kid[0].kid[0].shown) PixelActions();
+  if (me.kid[0].kid[1].shown) GeneActions();
   me.drawMe();
   ptouches=touches.length;
 }
 void PixelActions(){
-  PixelInsertBeforeAction();
-  PixelSetAction();
-  PixelInsertAfterAction();
-  PixelRemoveAction();
+  if (me.kid[0].kid[0].objs[2].touched) PixelInsertBeforeAction();
+  if (me.kid[0].kid[0].objs[3].touched) PixelSetAction();
+  if (me.kid[0].kid[0].objs[4].touched) PixelInsertAfterAction();
+  if (me.kid[0].kid[0].objs[5].touched) PixelRemoveAction();
   PixelNowAction();
   PixelNewAction();
+  
 }
 void GeneActions(){
   GeneSliderAction();
   GeneNewAction();
-  GeneSetAction();
+  if(me.kid[0].kid[1].objs[0].touched) GeneSetAction();
   GeneTypeAction();
 }
 void AllPresentFileAction(){
@@ -93,7 +94,7 @@ void AllAfterImgSizChange(){
   int pTab=me.kid[0].kid[1].kid[1].value;
     me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
       sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
-      false, groupAssign(geneX, margin, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
+      false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
       SelectNames());
     me.kid[0].kid[1].kid[1].valueSet(pTab);
 }
@@ -113,16 +114,14 @@ void PrepareArrow(){
   }
 }
 void PixelInsertBeforeAction(){
-  if (me.kid[0].kid[0].objs[2].touched){
     myGenome.points.add(me.kid[0].kid[0].objs[0].value, new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].pressed, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(constrain(pSld+1, 0, myGenome.points.size()-1));
-  }
 }
 void PixelSetAction(){
-  if (me.kid[0].kid[0].objs[3].touched && me.kid[0].kid[0].objs[0].value<myGenome.points.size()){
+  if (me.kid[0].kid[0].objs[0].value<myGenome.points.size()){
     myGenome.points.set(me.kid[0].kid[0].objs[0].value, new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
@@ -131,16 +130,14 @@ void PixelSetAction(){
   }
 }
 void PixelInsertAfterAction(){
-  if (me.kid[0].kid[0].objs[4].touched){
     myGenome.points.add(constrain(me.kid[0].kid[0].objs[0].value+1, 0, myGenome.points.size()-1), new Pixel(1, colors[me.kid[0].kid[0].objs[1].value]));
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, 0, myGenome.points.size()-1, me.kid[0].kid[0].objs[0].pressed, me.kid[0].kid[0].objs[0].touchId, "Pixel");
     me.kid[0].kid[0].objs[0].valueSet(pSld);
-  }
 }
 void PixelRemoveAction(){
-  if (me.kid[0].kid[0].objs[5].touched && myGenome.points.size()-1>me.kid[0].kid[0].objs[0].value){
+  if (myGenome.points.size()-1>me.kid[0].kid[0].objs[0].value){
     myGenome.points.remove(me.kid[0].kid[0].objs[0].value);
     PixelChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
@@ -175,13 +172,52 @@ void GeneSliderAction(){
     me.kid[0].kid[1].objs[0].valueSet(0);
 }
 void GeneNewAction(){
-  //switch()
-  me.kid[0].kid[1].kid[2].objs[0] = new Gene(me.kid[0].kid[1].objs[0].value*1000+me.kid[0].kid[1].objs[1].value, 0);
+  if(me.kid[0].kid[1].kid[1].value!=0)
+  switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==4?0:me.kid[0].kid[1].kid[1].value-1].type) {
+  case nan:
+    text("unknown type",500,500);
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      parseLong(me.kid[0].kid[1].kid[0].objs[1].name), 0);
+    return;
+  case num:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      me.kid[0].kid[1].objs[1].value*1000+
+      me.kid[0].kid[1].objs[2].value, 0);
+    return;
+  case text:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[0].objs[1].name, 0);
+    return;
+  case col:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      (me.kid[0].kid[1].objs[3].value<<16)+
+      (me.kid[0].kid[1].objs[4].value<<8)+
+      (me.kid[0].kid[1].objs[5].value), 0);
+    return;
+  case dress_wiggo:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      me.kid[0].kid[1].objs[6].value, 0);
+    return;
+  case dress_heddo:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      me.kid[0].kid[1].objs[7].value, 0);
+    return;
+  case dress_boddo:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      me.kid[0].kid[1].objs[8].value, 0);
+    return;
+  case dress_panto:
+    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+      me.kid[0].kid[1].objs[9].value, 0);
+    return;
+  default:
+    text("unknown type",500,500);
+    return;
+  }
 }
 void GeneSetAction(){
-  if(me.kid[0].kid[1].objs[0].touched){
-    if(me.kid[0].kid[1].kid[1].value>0)
-      myGenome.genes.set(me.kid[0].kid[1].kid[1].value-1, new Gene(me.kid[0].kid[1].objs[0].value*1000+me.kid[0].kid[1].objs[1].value, 0));
+  if(me.kid[0].kid[1].kid[1].value>0){
+    myGenome.genes.set(me.kid[0].kid[1].kid[1].value-1, (Gene)me.kid[0].kid[1].kid[2].objs[0]);
     GeneChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
@@ -192,14 +228,18 @@ void GeneTypeAction(){
   for(int i=1;i<10;i++)
     me.kid[0].kid[1].objs[i].shown=false;
   me.kid[0].kid[1].kid[0].objs[1].shown=false;
-    GeneType type;
-  if(me.kid[0].kid[1].kid[1].value==0) return;
-  else if(compareSpieces(myGenome.genes.size())==4)
+  GeneType type;
+  if(me.kid[0].kid[1].kid[1].value==0) {
+    me.kid[0].kid[1].objs[0].shown=false;
+    return;
+  } else me.kid[0].kid[1].objs[0].shown=true;
+  if(compareSpieces(myGenome.genes.size())==4)
     type = geneNames[4][0];
   else
     type = geneNames[compareSpieces(myGenome.genes.size())][me.kid[0].kid[1].kid[1].value-1];
   for(Place elem : type.selectGeneInput())
     elem.shown=true;
+  me.kid[0].kid[1].objs[0].y=4*margin+6*resizedPSiz+type.selectGeneInput().length*(margin+sldBtn);
 }
 void GeneChangeActions(){//protected
   myGenome.updatePixel();
