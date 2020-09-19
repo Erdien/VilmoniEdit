@@ -7,7 +7,6 @@ class Place {
   int y=0;
   int wid=0;
   int hei=0;
-  //int type=0;//nothing, button, switch, scroll
   int value=0;
   int barmax=1; //have to delete/make scroll only
   int barmin=0; //same as ^

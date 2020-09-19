@@ -1,6 +1,6 @@
 /** triggers and actions */
 void AllActions(){
-  image(myGenome.img, 0 , 0, myGenome.ScrImgWid, myGenome.ScrImgHei);
+  image(myGenome.img, 0, 0, myGenome.ScrImgWid, myGenome.ScrImgHei);
   me.isPressed();
   //showInp();
   AllPresentFileAction();
@@ -90,6 +90,7 @@ void AllAfterImgSizChange(){
   for(int i = 0; i<me.kid[0].kid.length;i++){
     me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;
     me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;
+    //me.kid[0].kid[i].kid[0].objs[0].y=-margin-myGenome.ScrImgHei;
   }
   int pTab=me.kid[0].kid[1].kid[1].value;
     me.kid[0].kid[1].kid[1]=new Tabs(-margin, -margin,
@@ -97,6 +98,7 @@ void AllAfterImgSizChange(){
       false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
       SelectNames());
     me.kid[0].kid[1].kid[1].valueSet(pTab);
+    me.kid[0].kid[1].kid[2].y=sldBtn*2-myGenome.ScrImgHei+2*textSize;
 }
 void PrepareArrow(){
   switch (me.kid[0].value){
@@ -176,38 +178,38 @@ void GeneNewAction(){
   switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==4?0:me.kid[0].kid[1].kid[1].value-1].type) {
   case nan:
     text("unknown type",500,500);
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       parseLong(me.kid[0].kid[1].kid[0].objs[1].name), 0);
     return;
   case num:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       me.kid[0].kid[1].objs[1].value*1000+
       me.kid[0].kid[1].objs[2].value, 0);
     return;
   case text:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
     me.kid[0].kid[1].kid[0].objs[1].name, 0);
     return;
   case col:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       (me.kid[0].kid[1].objs[3].value<<16)+
       (me.kid[0].kid[1].objs[4].value<<8)+
       (me.kid[0].kid[1].objs[5].value), 0);
     return;
   case dress_wiggo:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       me.kid[0].kid[1].objs[6].value, 0);
     return;
   case dress_heddo:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       me.kid[0].kid[1].objs[7].value, 0);
     return;
   case dress_boddo:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       me.kid[0].kid[1].objs[8].value, 0);
     return;
   case dress_panto:
-    me.kid[0].kid[1].kid[2].objs[0] = new Gene(
+    me.kid[0].kid[1].kid[2].kid[0].objs[0] = new Gene(
       me.kid[0].kid[1].objs[9].value, 0);
     return;
   default:
@@ -217,7 +219,7 @@ void GeneNewAction(){
 }
 void GeneSetAction(){
   if(me.kid[0].kid[1].kid[1].value>0){
-    myGenome.genes.set(me.kid[0].kid[1].kid[1].value-1, (Gene)me.kid[0].kid[1].kid[2].objs[0]);
+    myGenome.genes.set(me.kid[0].kid[1].kid[1].value-1, (Gene)me.kid[0].kid[1].kid[2].kid[0].objs[0]);
     GeneChangeActions();
     int pSld=me.kid[0].kid[0].objs[0].value;
     me.kid[0].kid[0].objs[0]=new Slider(0, 0, me.kid[0].kid[0].objs[0].wid, 0, myGenome.points.size()-1, "Pixel");
@@ -244,6 +246,11 @@ void GeneTypeAction(){
 void GeneChangeActions(){//protected
   myGenome.updatePixel();
   AllAfterImgSizChange();
+  me.kid[0].kid[1].kid[2].kid[0].y = resizedPSiz*(
+    (me.kid[0].kid[1].kid[1].kid[me.kid[0].kid[1].kid[1].value-1].objs[0].value-1) /((width-geneX)/resizedPSiz)+1);
+  println("gene_lines:", me.kid[0].kid[1].kid[1].kid[me.kid[0].kid[1].kid[1].value-1].objs[0].value-- ,(width-geneX)/resizedPSiz+1);
+  me.kid[0].kid[1].objs[11].y = me.kid[0].kid[1].kid[2].kid[0].y+sldBtn*2-myGenome.ScrImgHei+2*margin-textSize;
+  //changes new gene label and field .y pos
   //me.x=myGenome.ScrImgWid;
  // me.kid[0].kid[0].x=
 }

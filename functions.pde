@@ -87,12 +87,12 @@ color chain(int place, Genome code) {
     code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
 }
-int digits(int value){
-  for(int i=1;;i++) {
-    if (value<12) return i;
-    value/=12;
-  }
-}
+//int digits(int value){
+//  for(int i=1;;i++) {
+//    if (value<12) return i;
+//    value/=12;
+//  }
+//}
 long parseLong(String value){
   try{
     return Long.parseLong(value);

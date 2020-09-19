@@ -18,20 +18,22 @@ class Pixel {
 }
 class Gene extends Place{
   ArrayList<Pixel> points;
-  int begin;
+  int begin=0;
   Gene(ArrayList<Pixel> points, int begin) {
     this.wid=resizedPSiz;
     this.hei=this.wid;
     for(int i=0;i<points.size();i++)
       this.value += pow(points.get(i).value, i);
+    this.name = str(this.value);
     this.points = points;
-    this.begin = begin;
+    this.value = points.size();
+    //this.begin = begin;
   }
   Gene(long value, int begin) {
     this.wid=resizedPSiz;
     this.hei=this.wid;
-    if(value<=Integer.MAX_VALUE)
-      this.value=(int)value;
+    //if(value<=Integer.MAX_VALUE)
+    //  this.value=(int)value;
     this.name=str(value);
     this.points = new ArrayList<Pixel>();
     //println( value, ((int)value%12L+12L)%12);
@@ -41,6 +43,8 @@ class Gene extends Place{
       value/=12;
       if(value==0) break;
     }
+    this.value=this.points.size();
+    //this.begin=begin;
   }
   Gene(String value, int begin) {
     this.wid=resizedPSiz;
@@ -67,13 +71,14 @@ class Gene extends Place{
       }
       //println(value, (i<digits(value)-1?"ex":"ne"), i, digits(value));
     }
+    this.value = this.points.size();
   }
   void drawMe(){
     noStroke();
     for(int i=0; i<points.size(); i++){
       fill(colors[this.points.get(i).value]);
       rect(floor(i%((width-geneX)/this.wid))*this.wid,
-        floor(i/((width-geneX)/this.wid))*this.wid, 
+        this.y+floor(i/((width-geneX)/this.wid))*this.wid, 
         this.hei, this.hei);
     }
     stroke(0);
