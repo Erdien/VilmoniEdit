@@ -172,8 +172,8 @@ void exit(){
   System.exit(0);
 }
 void draw(){
-  if(frameCount==10)
-    showSoftKeyboard();
+  //if(frameCount==10)
+    //showSoftKeyboard();
   if(me!=null){
   background(192);
   AllActions();
@@ -292,7 +292,7 @@ void createGUI(){
             }
           )//end textbox
         }//end pregroup
-      )//end 2nd group
+      )//end idk group
       
     },
     new String[]{"Gene", "Pixel", "idk\nTab for testing", "Options", "Credits"})

@@ -34,18 +34,18 @@ void AllPresentFileAction(){
     }
     switch(me.kid[0].value){
       case 1:
-        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
+        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
       break;
       case 2:
-        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
+        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
       break;
       case 3:
-        me.kid[0].kid[1].kid[0].objs[0].name="";
         me.kid[0].kid[0].kid[0].objs[0].name="";
+        me.kid[0].kid[1].kid[0].objs[0].name="";
       break;
       case 4:
-        me.kid[0].kid[1].kid[0].objs[0].name="";
         me.kid[0].kid[0].kid[0].objs[0].name="";
+        me.kid[0].kid[1].kid[0].objs[0].name="";
       break;
       default:
     }
@@ -57,13 +57,13 @@ void AllSetNewFilePos(){
   me.objs[0].y=fileBoxY+rowHei+margin;
   me.objs[1].y=fileBoxY-margin;
   me.objs[2].y=fileBoxY-margin;
-  me.kid[0].kid[1].kid[0].objs[0].y=fileBoxY;
   me.kid[0].kid[0].kid[0].objs[0].y=fileBoxY;
+  me.kid[0].kid[1].kid[0].objs[0].y=fileBoxY;
 }
 void AllUpdateAction(){
   if (me.objs[0].touched){
     try{
-      String file = myContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/"+me.kid[0].kid[1].kid[0].objs[0].name+".png";
+      String file = myContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/"+me.kid[0].kid[0].kid[0].objs[0].name+".png";
       if (!new File(file).getParentFile().exists())
         new File(file).getParentFile().mkdir();
       println(file);
@@ -86,12 +86,13 @@ void AllUpdateAction(){
     
   }
 }
-void AllAfterImgSizChange(){
+void AllAfterImgSizChange(){  //a little bit messy, sorry for that
   for(int i = 0; i<me.kid[0].kid.length;i++){
     me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;
     me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;
-    //me.kid[0].kid[i].kid[0].objs[0].y=-margin-myGenome.ScrImgHei;
+    me.kid[0].kid[i].kid[0].y=-margin-myGenome.ScrImgHei;
   }
+  me.kid[0].kid[0].kid[0].objs[1].y=6*margin+6*resizedPSiz+myGenome.ScrImgHei;
   int pTab=me.kid[0].kid[0].kid[1].value;
     me.kid[0].kid[0].kid[1]=new Tabs(-margin, -margin,
       sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
@@ -103,11 +104,11 @@ void AllAfterImgSizChange(){
 void PrepareArrow(){
   switch (me.kid[0].value){
     case 1:
-      myGenome.drawArrow(0, 0, me.kid[0].kid[1].objs[0].value);
-    break;
-    case 2:
       if (me.kid[0].kid[0].kid[1].value != 0)
         myGenome.drawArrow(0, 0, myGenome.genes.get(me.kid[0].kid[0].kid[1].value-1).begin);
+    break;
+    case 2:
+      myGenome.drawArrow(0, 0, me.kid[0].kid[1].objs[0].value);
     break;
     case 3:
       
@@ -159,7 +160,7 @@ void PixelNewAction(){
   me.kid[0].kid[1].objs[8].value=colors[me.kid[0].kid[1].objs[1].value];
   me.kid[0].kid[1].objs[8].name=str(me.kid[0].kid[1].objs[1].value);
 }
-void GeneSliderAction(){
+void GeneSliderAction(){//to fix
   if (me.kid[0].kid[0].objs[1].value==1000){
     me.kid[0].kid[0].objs[0].valueSet(me.kid[0].kid[0].objs[0].value+1);
     me.kid[0].kid[0].objs[1].valueSet(0);

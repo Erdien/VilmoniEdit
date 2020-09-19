@@ -81,6 +81,7 @@ class Button extends Place {
       updateValue();
       return this.pressed;
     }
+    this.touched=false;
     this.pressed=false;
     updateValue();
     return false;
