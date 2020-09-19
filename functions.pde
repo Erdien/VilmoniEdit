@@ -31,42 +31,42 @@ class GeneType {
     switch(this.type) {
     case nan:
       return new Place[]{
-        me.kid[0].kid[1].kid[0].objs[1]
+        me.kid[0].kid[0].kid[0].objs[1]
       };
     case num:
       return new Place[]{
-        me.kid[0].kid[1].objs[1], 
-        me.kid[0].kid[1].objs[2]
+        me.kid[0].kid[0].objs[1], 
+        me.kid[0].kid[0].objs[2]
       };
     case text:
       return new Place[]{
-        me.kid[0].kid[1].kid[0].objs[1]
+        me.kid[0].kid[0].kid[0].objs[1]
       };
     case col:
       return new Place[]{
-        me.kid[0].kid[1].objs[3], 
-        me.kid[0].kid[1].objs[4], 
-        me.kid[0].kid[1].objs[5]
+        me.kid[0].kid[0].objs[3], 
+        me.kid[0].kid[0].objs[4], 
+        me.kid[0].kid[0].objs[5]
       };
     case dress_wiggo:
       return new Place[]{
-        me.kid[0].kid[1].objs[6]
+        me.kid[0].kid[0].objs[6]
       };
     case dress_heddo:
       return new Place[]{
-        me.kid[0].kid[1].objs[7]
+        me.kid[0].kid[0].objs[7]
       };
     case dress_boddo:
       return new Place[]{
-        me.kid[0].kid[1].objs[8]
+        me.kid[0].kid[0].objs[8]
       };
     case dress_panto:
       return new Place[]{
-        me.kid[0].kid[1].objs[9]
+        me.kid[0].kid[0].objs[9]
       };
     default://same as nan
       return new Place[]{
-        me.kid[0].kid[1].kid[0].objs[1]
+        me.kid[0].kid[0].kid[0].objs[1]
       };
     }
   }

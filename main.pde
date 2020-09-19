@@ -298,5 +298,5 @@ void createGUI(){
     new String[]{"Gene", "Pixel", "idk\nTab for testing", "Options", "Credits"})
     });
   
-  //me.kid[0].kid[1].kid[1].objs[0].pressed=true;
+  //me.kid[0].kid[0].kid[1].objs[0].pressed=true;
 }
