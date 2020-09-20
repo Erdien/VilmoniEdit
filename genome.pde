@@ -206,8 +206,12 @@ class Genome {
     quickSetup();
   }
   void updatePixel(){
+    int pointSize=1;
+    for (Gene gene : this.genes)
+      pointSize+=gene.value+1;
+    println("ggg", pointSize, this.points.size());
     PGraphics newimg = createGraphics(this.img.width,
-      this.beginPixel.y+floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*this.points.size())/this.img.width));
+      this.beginPixel.y+floor(pSiz/2)+pSiz*floor((this.beginPixel.x-floor(pSiz/2)+pSiz*pointSize)/this.img.width));
     newimg.beginDraw();
     newimg.noStroke();
     newimg.fill(0);

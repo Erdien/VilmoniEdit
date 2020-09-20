@@ -104,7 +104,7 @@ void AllAfterImgSizChange(){  //a little bit messy, sorry for that
 void PrepareArrow(){
   switch (me.kid[0].value){
     case 1:
-    //println( myGenome.genes.get(me.kid[0].kid[0].kid[1].value-1).begin );
+    println( myGenome.genes.get(me.kid[0].kid[0].kid[1].value-1).begin );
       if (me.kid[0].kid[0].kid[1].value != 0)
         myGenome.drawArrow(0, 0, myGenome.genes.get(me.kid[0].kid[0].kid[1].value-1).begin);
     break;
