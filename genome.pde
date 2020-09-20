@@ -27,7 +27,7 @@ class Gene extends Place{
     this.name = str(this.value);
     this.points = points;
     this.value = points.size();
-    //this.begin = begin;
+    this.begin = begin;
   }
   Gene(long value, int begin) {
     this.wid=resizedPSiz;
@@ -44,7 +44,7 @@ class Gene extends Place{
       if(value==0) break;
     }
     this.value=this.points.size();
-    //this.begin=begin;
+    this.begin=begin;
   }
   Gene(String value, int begin) {
     this.wid=resizedPSiz;
@@ -72,6 +72,7 @@ class Gene extends Place{
       //println(value, (i<digits(value)-1?"ex":"ne"), i, digits(value));
     }
     this.value = this.points.size();
+    this.begin=begin;
   }
   void drawMe(){
     noStroke();
