@@ -87,6 +87,8 @@ void AllUpdateAction(){
   }
 }
 void AllAfterImgSizChange(){  //a little bit messy, sorry for that
+  for(int i=0;i<2;i++)
+    me.kid[0].kid[i].objs[0] = new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img);
   for(int i = 0; i<me.kid[0].kid.length;i++){
     me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;
     me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;
@@ -151,8 +153,6 @@ void PixelRemoveAction(){
 }
 void PixelChangeActions(){//protected
   myGenome.updateGenes();
-  for(int i=0;i<2;i++)
-    me.kid[0].kid[i].objs[0] = new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.img);
   AllAfterImgSizChange();
 }
 void PixelNowAction(){
@@ -249,8 +249,6 @@ void GeneTypeAction(){
 }
 void GeneChangeActions(){//protected
   myGenome.updatePixel();
-  for(int i=0;i<2;i++)
-    me.kid[0].kid[i].objs[0] = new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.img);
   AllAfterImgSizChange();
   me.kid[0].kid[0].kid[2].kid[0].y = resizedPSiz*(
     (me.kid[0].kid[0].kid[1].kid[me.kid[0].kid[0].kid[1].value-1].objs[0].value-1) /((width-geneX)/resizedPSiz)+1);

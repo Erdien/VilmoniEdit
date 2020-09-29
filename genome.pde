@@ -113,7 +113,7 @@ class Genome {
         if (gBeg==i && mayLast==-1) mayLast=i-1;
         else if (gBeg!=i) mayLast=-1;
         if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
-          //this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
+          this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
           break;
         }
         if (mayLast==-1 && i!=0)
