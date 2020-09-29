@@ -23,7 +23,7 @@ class Gene extends Place{
     this.wid=resizedPSiz;
     this.hei=this.wid;
     for(int i=0;i<points.size();i++)
-      this.value += pow(points.get(i).value, i);
+      this.value += points.get(i).value*pow(12, points.size()-i-1);
     this.name = str(this.value);
     this.points = points;
     this.value = points.size();
@@ -32,9 +32,10 @@ class Gene extends Place{
   Gene(long value, int begin) {
     this.wid=resizedPSiz;
     this.hei=this.wid;
-    //if(value<=Integer.MAX_VALUE)
-    //  this.value=(int)value;
-    this.name=str(value);
+    if(value<=Integer.MAX_VALUE)
+      this.name=str((int)value);
+    else
+      this.name=str(value);
     this.points = new ArrayList<Pixel>();
     //println( value, ((int)value%12L+12L)%12);
     for(int i=0;;i++){
@@ -82,6 +83,8 @@ class Gene extends Place{
         this.y+floor(i/((width-geneX)/this.wid))*this.wid, 
         this.hei, this.hei);
     }
+    fill(0);
+    text(this.name, this.x+100, this.y-textSize);
     stroke(0);
   }
   boolean isPressed(int x, int y) {//untouchable
@@ -110,7 +113,7 @@ class Genome {
         if (gBeg==i && mayLast==-1) mayLast=i-1;
         else if (gBeg!=i) mayLast=-1;
         if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
-          this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
+          //this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
           break;
         }
         if (mayLast==-1 && i!=0)
@@ -118,12 +121,6 @@ class Genome {
         gBeg=i+1;
       }
     }
-  }
-  void drawMe(boolean pixelOrientation, boolean geneOrientation, Position begin) {
-    if (pixelOrientation)
-      if (geneOrientation)
-      {
-      }
   }
   void quickSetup(){
     final int spaceX = sldBtn*4;

@@ -294,6 +294,27 @@ class Label extends Place {
     return false;
   }
 }
+class Image extends Place {
+  PImage image;
+  Image(int x, int y, PImage image){
+    this.x = x;
+    this.y = y;
+    this.wid = image.width;
+    this.hei = image.height;
+    this.image = image;
+  }
+  Image(int x, int y, int wid, int hei, PImage image){
+    this.x = x;
+    this.y = y;
+    this.wid = wid;
+    this.hei = hei;
+    this.image = image;
+
+  }
+  void drawMe(){
+    image(this.image, this.x, this.y, this.wid, this.hei);
+  }
+}
 class Tuple extends Place {
   Place[] objs;
   void drawMe() {

@@ -180,6 +180,7 @@ void draw(){
   //line(width/2,0,width/2,height);
   }else if(myGenome!=null) {
     createGUI();
+    
   }
 }
 public void showSoftKeyboard() {
@@ -210,6 +211,7 @@ void createGUI(){
     
     new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
+          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img),
           new Button(sldBtn*2, 4*margin+6*resizedPSiz, 2*sldBtn, sldBtn, "Set"),
           
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"),
@@ -249,6 +251,7 @@ void createGUI(){
     
       new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
+          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img),
           new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel"),
           new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
             new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""}),
@@ -270,8 +273,15 @@ void createGUI(){
               new TextBox(fileBoxX, fileBoxY, 40*10, rowHei, "")
             }
           )
-        }
+        }//end Container
       ),//end Pixel
+      
+      
+      /*new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
+        new Place[]{
+          new Button(0,0,10,10,"ii")
+        }//end Place
+      ),//end Settings*/
       
       
       new Group(200, 350,

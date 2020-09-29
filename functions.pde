@@ -35,8 +35,8 @@ class GeneType {
       };
     case num:
       return new Place[]{
-        me.kid[0].kid[0].objs[1], 
-        me.kid[0].kid[0].objs[2]
+        me.kid[0].kid[0].objs[2], 
+        me.kid[0].kid[0].objs[3]
       };
     case text:
       return new Place[]{
@@ -44,25 +44,25 @@ class GeneType {
       };
     case col:
       return new Place[]{
-        me.kid[0].kid[0].objs[3], 
         me.kid[0].kid[0].objs[4], 
-        me.kid[0].kid[0].objs[5]
+        me.kid[0].kid[0].objs[5], 
+        me.kid[0].kid[0].objs[6]
       };
     case dress_wiggo:
       return new Place[]{
-        me.kid[0].kid[0].objs[6]
+        me.kid[0].kid[0].objs[7]
       };
     case dress_heddo:
       return new Place[]{
-        me.kid[0].kid[0].objs[7]
+        me.kid[0].kid[0].objs[8]
       };
     case dress_boddo:
       return new Place[]{
-        me.kid[0].kid[0].objs[8]
+        me.kid[0].kid[0].objs[9]
       };
     case dress_panto:
       return new Place[]{
-        me.kid[0].kid[0].objs[9]
+        me.kid[0].kid[0].objs[10]
       };
     default://same as nan
       return new Place[]{
@@ -82,10 +82,15 @@ boolean isSimilar(color data, color check, int tollerance) { //tollerance is max
   return distance<=tollerance;
 }
 color chain(int place, Genome code) {
-  return code.img.get(
+  color test = code.img.get(
     code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz, 
     code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
+    println(
+      code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz,
+      code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz,
+      test);
+      return test;
 }
 //int digits(int value){
 //  for(int i=1;;i++) {
