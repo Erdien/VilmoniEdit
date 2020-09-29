@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.view.ViewTreeObserver;
 import android.graphics.Rect;
-
+ 
 EditText box;
 Activity act;
 Context mC;
