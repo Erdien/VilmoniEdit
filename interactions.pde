@@ -25,6 +25,7 @@ void GeneActions(){
   GeneSliderAction();
   GeneNewAction();
   if(me.kid[0].kid[0].objs[1].touched) GeneSetAction();
+  if(me.kid[0].kid[0].kid[1].touched) GeneTabAction();
   GeneTypeAction();
 }
 void AllPresentFileAction(){
@@ -100,9 +101,9 @@ void AllAfterImgSizChange(){  //a little bit messy, sorry for that
       sldBtn*2, (float)(height-myGenome.ScrImgHei)/myGenome.genes.size(),
       false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
       SelectNames());
-    me.kid[0].kid[0].kid[1].valueSet(pTab);
-    me.kid[0].kid[0].kid[2].y=sldBtn*2-myGenome.ScrImgHei+2*textSize;
-    me.kid[0].kid[0].objs[11].y=sldBtn*2-myGenome.ScrImgHei-margin;
+    me.kid[0].kid[0].kid[1].valueSet(pTab);     //gene tabs
+    me.kid[0].kid[0].kid[2].y=sldBtn*2-myGenome.ScrImgHei+2*textSize;   //gene new gene outer
+    me.kid[0].kid[0].objs[11].y=sldBtn*2-myGenome.ScrImgHei-margin;     //gene Now label
 }
 void PrepareArrow(){
   switch (me.kid[0].value){
@@ -250,6 +251,11 @@ void GeneTypeAction(){
     elem.shown=true;
   me.kid[0].kid[0].objs[1].y=4*margin+6*resizedPSiz+type.selectGeneInput().length*(margin+sldBtn);
 }
+void GeneTabAction(){
+  me.kid[0].kid[0].kid[2].kid[0].y = resizedPSiz*(
+    (me.kid[0].kid[0].kid[1].kid[me.kid[0].kid[0].kid[1].value-1].objs[0].value-1) /((width-geneX)/resizedPSiz)+1);
+  me.kid[0].kid[0].objs[12].y = me.kid[0].kid[0].kid[2].kid[0].y+sldBtn*2-myGenome.ScrImgHei+2*margin-textSize;
+  }
 void GeneChangeActions(){//protected
   myGenome.updatePixel();
   AllAfterImgSizChange();
