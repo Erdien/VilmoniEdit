@@ -286,26 +286,26 @@ void createGUI(){
       
       new Group(200, 350,
         new Place[]{
-          new Scroll(0, 0, 200, 60, 50, 100, "Scroll2"), 
-          new Switch(0, 30, 60, rowHei, "Switch2"), 
-          new Button(70, 30, 60, rowHei, "Button1"),
-          new Label(0, 150, "Label1"),
+          new Scroll(0, 0, 200, 60, 50, 100, "S̶̨̹͉͚̳͙̆c̷̱͍̊̿̎̍͑̕͜ṙ̴̨̦̩̔̂̈́̓͜͝o̸̗͎͙͔̩̊̇̍̚ḻ̸̛̘̙̺̈́̉͆ļ̶̼̻̠̤̈́̕2̷̨͈͖̮̳͂́͛̇"), 
+          new Switch(0, 30, 60, rowHei, "S̷̗͖͋̓w̸̰̃i̸̳͌t̵̺̼̃̑c̷̻̐h̷̻̭͋2̶̠̽"), 
+          new Button(70, 30, 60, rowHei, "B̵̨̼̎u̶̦͒t̸̯̋t̸̫͎̿̈́ǫ̷͍͆͆n̶̛̙̕1̴̫̩̅"),
+          new Label(0, 150, "L̶͍̣̅a̸͎̦͂͋b̷̪͑e̵̠̝̋͘l̸̦̽̑1̷̩͆"),
           new ColorTabs(sldBtn*2+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, false, 16, 0)
         },//end place
         new PreGroup[]{
           new TextBoxes(0, 70,
             new TextBox[]{
-              new TextBox(0, 0, 90, rowHei, ""), 
-              new TextBox(100, 0, 90, rowHei, ""), 
-              new TextBox(0, 40, 90, rowHei, ""), 
-              new TextBox(100, 40, 90, rowHei, "")
+              new TextBox(0, 0, 90, rowHei, "3̵͖̬́͘ф̷̣̓谭̵͓̼͌E̶͙̗͠С̷̭̒̏थ̵̩̽त̶̮̓͜ी̵̯͈͒फ̸̤̬̆͒光̴̧̄盘̷̫̎й̶͉̣̿=̴̛̘̜^̴͉͕̇̋°̴͎̿¢̵̠̈इ̵̝̲͛̓ज̴̵्̲̪̙̗̃͗̈ञ̵̐̽͜х̶̪̐п̶͍̫̓च̵̗̜̓͂ई̴̢̔̑a̵̦͚̾͝Д̵̮̲̓̉H̵̛̖͉ड̵͖̎а̸̳͆"), 
+              new TextBox(100, 0, 90, rowHei, "安̷̳͐导̴̮̖̉̆i̷̱̾य̶̮̭̆щ̶͑̃ͅУ̵̹̃ḩ̸̙͐͝祋̵̤̩̉̀ब̴̡̑ц̵͇̻̊̕й̸̰́ठ̶̜̂[̷̪͚͠͝य̶̡̫̌́G̶͖͈͗ज̴̷्̬̂̒̉͜͝ञ̵̥̰͒́彽̶̱̳͗₽̸̳͍͒̕ш̶͚̔̓य̴̹̎र̶̧͍͝#̶̖̙̑͝Ы̸̧͑л̵̧͛͌本̵̤̋̍"), 
+              new TextBox(0, 40, 90, rowHei, "त̶̩̃́$̴͚̫͛̈́त̸̧̙͑͝Y̸̺̜̿&̶̯͎͊(̶̖̖͐̐/̸̪̚:̶̥̭̆͐В̵͈̖̓:̷̝͋͘峰̷͈̲͑!̵͚̹̈́͊_̷̭̅म̶͎̪̈̇Я̷͙̔ͅब̸̤̥̽≠̢̡̽̇भ̶̝̐̚м̸̛͔̿®̸̼͗=̴̗͐̕͜€̸̧̾̕इ̴͍͍̓इ̴̹̙̀च̸̮͙̽ब̸͎͕̏×̵̟̿°̶̙̿p̵̥̻̅.̸͙̣̀]̷̧͔̓̇d̸̬̰̓-̴͉̗̓̋`̷͇̄̆D̵̯̓z̸͎̆̀"), 
+              new TextBox(100, 40, 90, rowHei, "फ̵̭͈̽н̶͕̳̾ы̸̼̗͒F̷̨̛͋π̸͖̫̇͗S̶̝͚͘͠€̸̟̎™̵̰̭̔√̴̩͍̂͠鹤̶̞͆̎͜в̴̘̓̿О̷̮̄̚从̶̮̭̈́̆в̵̩̻̈́̕K̸̝̈́̌光̸̹͆驱̶̢̗̿в̵̼̎क̴̷्̡̭͇̇̓͊ष̵̱̲͝隣̴̛̳̝̚®̸̗͌̚र̵̭͝¢̶̖͓̔ӱ̴̠́̇ӱ̵͚́ж̴̽̄͜Ŝ̸̜̥̃ж̸̝͆")
             }
           )//end textbox
         }//end pregroup
       )//end idk group
       
     },
-    new String[]{"Gene", "Pixel", "idk\nTab for testing", "Options", "Credits"})
+    new String[]{"Gene", "Pixel", "ī̶̢̡d̴̡͔͍͈̺͗k̸̯͖͇̻̔̅̍̑͝\nT̸̩͗͐̑̀̆͜a̷̲͇̻͐̋͒̎b̷̢̥̀͐ͅf̸̢̥̾ͅͅó̷̢͕̗̹̼̣r̷͖͝͝T̶̀̐̈́̄̋ͅě̶̢͓́͌s̸̡̺̘͇̉̈́̎̑͜ţ̷͓̟̻̿į̶̱̫̔̔͐͑̚ņ̵̛͎̪̥̥̍̈̇͝g̷̫̞͉͓̩̑̒̓̚ͅ", "Options", "Credits"})
     });
   
   //me.kid[0].kid[0].kid[1].objs[0].pressed=true;

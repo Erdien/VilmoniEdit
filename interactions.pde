@@ -156,26 +156,29 @@ void PixelChangeActions(){//protected
   AllAfterImgSizChange();
 }
 void PixelNowAction(){
-  me.kid[0].kid[1].objs[8].value=colors[myGenome.points.get(constrain(me.kid[0].kid[1].objs[1].value, 0, myGenome.points.size()-1)).value];
-  me.kid[0].kid[1].objs[8].name=str(myGenome.points.get(constrain(me.kid[0].kid[1].objs[1].value, 0, myGenome.points.size()-1)).value);
+  int val = myGenome.points.get(constrain(me.kid[0].kid[1].objs[1].value, 0, myGenome.points.size()-1)).value;
+  me.kid[0].kid[1].objs[8].value=colors[val];
+  me.kid[0].kid[1].objs[8].name=val<12||val>15?str(val):"separator";
 }
 void PixelNewAction(){
-  me.kid[0].kid[1].objs[9].value=colors[me.kid[0].kid[1].objs[2].value];
-  me.kid[0].kid[1].objs[9].name=str(me.kid[0].kid[1].objs[2].value);
+  int val = me.kid[0].kid[1].objs[2].value;
+  me.kid[0].kid[1].objs[9].value=colors[val];
+  me.kid[0].kid[1].objs[9].name=val<12||val>15?str(val):"separator";
 }
-void GeneSliderAction(){//to fix
-  if (me.kid[0].kid[0].objs[2].value==1000){
-    me.kid[0].kid[0].objs[1].valueSet(me.kid[0].kid[0].objs[1].value+1);
-    me.kid[0].kid[0].objs[2].valueSet(0);
-    me.kid[0].kid[0].objs[2].valueSet(-1);
+void GeneSliderAction(){//to update
+  if (me.kid[0].kid[0].objs[3].value==1000){
+    println("to many accuracy");
+    me.kid[0].kid[0].objs[2].valueSet(me.kid[0].kid[0].objs[2].value+1);
+    me.kid[0].kid[0].objs[3].valueSet(0);
+    me.kid[0].kid[0].objs[3].valueSet(-1);
   }
-  if (me.kid[0].kid[0].objs[1].value>=100){
-    me.kid[0].kid[0].objs[2].valueSet(0);
-    me.kid[0].kid[0].objs[2].valueSet(-1);
-    me.kid[0].kid[0].objs[1].valueSet(100);
+  if (me.kid[0].kid[0].objs[2].value>=100){
+    me.kid[0].kid[0].objs[3].valueSet(0);
+    me.kid[0].kid[0].objs[3].valueSet(-1);
+    me.kid[0].kid[0].objs[2].valueSet(100);
   }
-  if (me.kid[0].kid[0].objs[1].value==0)
-    me.kid[0].kid[0].objs[1].valueSet(0);
+  if (me.kid[0].kid[0].objs[2].value==0)
+    me.kid[0].kid[0].objs[2].valueSet(0);
 }
 void GeneNewAction(){
   if(me.kid[0].kid[0].kid[1].value!=0)
