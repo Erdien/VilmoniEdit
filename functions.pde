@@ -82,15 +82,15 @@ boolean isSimilar(color data, color check, int tollerance) { //tollerance is max
   return distance<=tollerance;
 }
 color chain(int place, Genome code) {
-  color test = code.img.get(
+  return code.img.get(
     code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz, 
     code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz
     );
-    println(
+    /*println(
       code.beginPixel.x+floor(place%(code.img.width/pSiz))*pSiz,
       code.beginPixel.y+floor(place/(code.img.width/pSiz))*pSiz,
-      test);
-      return test;
+      test);*/
+      //return test;
 }
 //int digits(int value){
 //  for(int i=1;;i++) {

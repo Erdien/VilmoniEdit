@@ -112,12 +112,14 @@ class Genome {
       if (this.points.get(i).value>11 && this.points.get(i).value<16){//is separator
         if (gBeg==i && mayLast==-1) mayLast=i-1;
         else if (gBeg!=i) mayLast=-1;
-        if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
-          this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
-          break;
-        }
         if (mayLast==-1 && i!=0)
           this.genes.add(new Gene(new ArrayList<Pixel>(this.points.subList(gBeg, i)), gBeg));
+        if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
+          this.points.subList(mayLast==-1?i:mayLast, this.points.size()-1).clear();
+          break;
+        }
+        //if (mayLast==-1 && i!=0)
+        //  this.genes.add(new Gene(new ArrayList<Pixel>(this.points.subList(gBeg, i)), gBeg));
         gBeg=i+1;
       }
     }
@@ -173,19 +175,21 @@ class Genome {
     for(int i=0;;i++){
       if (i>=this.points.size())
         this.points.add(new Pixel(i, chain(i, this)));
-      if (this.points.get(i).value>11 && this.points.get(i).value<16){//is separato
+      if (this.points.get(i).value>11 && this.points.get(i).value<16){//is separator
         if (gBeg==i && mayLast==-1) mayLast=i-1;
         else if (gBeg!=i) mayLast=-1;
+        if (mayLast==-1 && i!=0)
+          this.genes.add(new Gene(new ArrayList<Pixel>(this.points.subList(gBeg, i)), gBeg));
         if (i*pSiz/this.img.width==(this.img.height-beginPixel.y-floor(pSiz/2))/pSiz+1){
-          this.points.subList(mayLast==-1?i-1:mayLast, this.points.size()-1).clear();
+          this.points.subList(mayLast==-1?i:mayLast, this.points.size()-1).clear();
           newimg.fill(0);
           newimg.rect(floor((this.beginPixel.x/pSiz+i)%(this.img.width/pSiz))*pSiz,
             this.beginPixel.y-floor(pSiz/2)+floor((this.beginPixel.x/pSiz+i)/(this.img.width/pSiz))*pSiz, 
             this.img.width-(this.beginPixel.x-floor(pSiz/2)+pSiz*i)%this.img.width, pSiz);
           break;
         }
-        if (mayLast==-1 && i!=0)
-          this.genes.add(new Gene(new ArrayList<Pixel>(this.points.subList(gBeg, i)), gBeg));
+        //if (mayLast==-1 && i!=0)
+        //  this.genes.add(new Gene(new ArrayList<Pixel>(this.points.subList(gBeg, i)), gBeg));
         gBeg=i+1;
       }
       newimg.fill(colors[points.get(i).value]);
