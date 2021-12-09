@@ -90,6 +90,8 @@ void loadSettings(){
   sldBtn = json.getInt("sldBtn");
   margin = json.getInt("margin");
   bottomMargin = json.getInt("bottomMargin");
+  textSize = json.getInt("textSize");
+  textBoxPadding = json.getInt("textBoxPadding");
   pSiz = json.getInt("pSiz", 8);
   pixel_Slider = json.getBoolean("pixel_Slider");
   number_Textbox = json.getBoolean("number_Textbox");
@@ -103,6 +105,8 @@ JSONObject json = new JSONObject();
   json.setInt("sldBtn", sldBtn);
   json.setInt("margin", margin);
   json.setInt("bottomMargin", bottomMargin);
+  json.setInt("textSize", textSize);
+  json.setInt("textBoxPadding", textBoxPadding);
   json.setInt("pSiz", pSiz);
   json.setBoolean("pixel_Slider", pixel_Slider);
   json.setBoolean("number_Textbox", number_Textbox);

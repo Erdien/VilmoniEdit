@@ -312,6 +312,8 @@ void SettingsSaveAction(){
   sldBtn = me.kid[0].kid[2].kid[1].objs[1].value;
   margin = me.kid[0].kid[2].kid[1].objs[2].value;
   bottomMargin = me.kid[0].kid[2].kid[1].objs[3].value;
+  textSize = me.kid[0].kid[2].kid[1].objs[4].value;
+  textBoxPadding = me.kid[0].kid[2].kid[1].objs[5].value;
   
   pixel_Slider = me.kid[0].kid[2].kid[2].objs[0].pressed;
   number_Textbox = me.kid[0].kid[2].kid[2].objs[1].pressed;
@@ -321,3 +323,4 @@ void SettingsSaveAction(){
   saveJSONObject(json, sketchPath("")+"config.json");
   createGUI();
 }
+

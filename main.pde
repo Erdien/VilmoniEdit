@@ -146,7 +146,7 @@ void createGUI() {
     pixel2 = new Slider(width/2+margin-margin*3/2, 0, width/2-sldCst-margin*3/2, 0, 15, "Value");
   } else {
     pixel1 = new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel");
-    pixel2 = new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0, 
+    pixel2 = new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0,
       new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""});
   }
   geneX = myGenome.ScrImgWid + margin;
@@ -154,47 +154,47 @@ void createGUI() {
     myGenome.ScrImgHei=50;
   if (myGenome.ScrImgWid<50)
     myGenome.ScrImgWid=50;
-  me = new Group(0, 0, 
+  me = new Group(0, 0,
     new Place[]{
     new Button(fileBoxX, fileBoxY-margin, sldBtn*2, rowHei*2, "Update"),                     //look at interactions
     new Button(fileBoxX+40*10+margin, fileBoxY-margin, sldBtn*2, rowHei*2, "Present File"),  //look at interactions
     new Label(fileBoxX, fileBoxY-textSize-textBoxPadding*2, "File Name:"),                   //look at interactions
-    }, 
+    },
     new PreGroup[]{
-      new Tabs(myGenome.ScrImgWid, 0, (float)(width-myGenome.ScrImgWid)/4, rowHei*3, true, 
+      new Tabs(myGenome.ScrImgWid, 0, (float)(width-myGenome.ScrImgWid)/4, rowHei*3, true,
       new Group[]{
 
-        new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei, 
+        new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
-          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img), 
-          new Button(sldBtn*2, 4*margin+6*resizedPSiz, 2*sldBtn, sldBtn, "Set"), 
+          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img),
+          new Button(sldBtn*2, 4*margin+6*resizedPSiz, 2*sldBtn, sldBtn, "Set"),
 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"), 
-          new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 1000, "Accurate"), 
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 1, 1, 100, "Base"),
+          new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 1000, "Accurate"),
 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Red"), 
-          new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Green"), 
-          new Slider(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Blue"), 
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Red"),
+          new Slider(sldBtn*2, 5*margin+6*resizedPSiz+sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Green"),
+          new Slider(sldBtn*2, 6*margin+6*resizedPSiz+2*sldBtn, width-sldCst-2*margin-sldBtn*2, 0, 0, 255, "Blue"),
 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 11, "Dress"), 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 23, "Dress"), 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 25, "Dress"), 
-          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"), 
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 11, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 23, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 25, "Dress"),
+          new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"),
 
-          new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei-margin, "Now"), 
+          new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei-margin, "Now"),
           new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei+2*margin+resizedPSiz-rowHei, "New")
         }, //end place
         new PreGroup[]{
-          new TextBoxes(-margin, -margin-myGenome.ScrImgHei, 
+          new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
           new TextBox[]{
-            new TextBox(fileBoxX, fileBoxY, 40*10, textSize+textBoxPadding*2, ""), 
+            new TextBox(fileBoxX, fileBoxY, 40*10, textSize+textBoxPadding*2, ""),
             new TextBox(sldBtn*2+margin, 6*margin+6*resizedPSiz+myGenome.ScrImgHei, width-2*margin-sldBtn*2, textSize+textBoxPadding*2, "")
           }
-          ), 
-          new Tabs(-margin, -margin, 
-          sldBtn*2, (float)(height-myGenome.ScrImgHei-bottomMargin)/myGenome.genes.size(), 
-          false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize+textBoxPadding*2, myGenome.genes.toArray(new Place[myGenome.genes.size()])), 
-          SelectNames()), 
+          ),
+          new Tabs(-margin, -margin,
+          sldBtn*2, (float)(height-myGenome.ScrImgHei-bottomMargin)/myGenome.genes.size(),
+          false, groupAssign(geneX, sldBtn*2-myGenome.ScrImgHei+textSize+textBoxPadding*2, myGenome.genes.toArray(new Place[myGenome.genes.size()])),
+          SelectNames()),
           new Group(geneX-margin, sldBtn*2-myGenome.ScrImgHei+2*textSize+textBoxPadding*2, new Group[]{
             new Group(0, resizedPSiz, new Place[]{
               new Gene(0, 0)
@@ -204,23 +204,23 @@ void createGUI() {
         ), //end Gene
 
 
-        new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei, 
+        new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei,
         new Place[]{
-          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img), 
-          pixel1, 
-          pixel2, 
-          new Button(0, sldBtn+margin, sldBtn*2, sldBtn, "Insert before"), 
+          new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img),
+          pixel1,
+          pixel2,
+          new Button(0, sldBtn+margin, sldBtn*2, sldBtn, "Insert before"),
           new Button(0, (sldBtn+margin)*2, sldBtn*2, sldBtn, "Set"), //if pressed set \/ to \\//
-          new Button(0, (sldBtn+margin)*3, sldBtn*2, sldBtn, "Insert after"), 
-          new Button(0, (sldBtn+margin)*4, sldBtn*2, sldBtn, "Remove"), 
-          new Button(sldBtn*2+margin, sldBtn+margin, sldBtn*2, sldBtn, "Prepare\n(unusavle)"), 
-          new Label(width/2-sldBtn-margin, sldBtn+margin*3, sldBtn, sldBtn, "0", 0), 
-          new Label(width/2-margin, sldBtn+margin*3, sldBtn, sldBtn, "0", -1), 
-          new Label(width/2-sldBtn-margin, sldBtn+margin, "Now"), 
-          new Label(width/2-margin, sldBtn+margin, "New"), 
+          new Button(0, (sldBtn+margin)*3, sldBtn*2, sldBtn, "Insert after"),
+          new Button(0, (sldBtn+margin)*4, sldBtn*2, sldBtn, "Remove"),
+          new Button(sldBtn*2+margin, sldBtn+margin, sldBtn*2, sldBtn, "Prepare\n(unusavle)"),
+          new Label(width/2-sldBtn-margin, sldBtn+margin*3, sldBtn, sldBtn, "0", 0),
+          new Label(width/2-margin, sldBtn+margin*3, sldBtn, sldBtn, "0", -1),
+          new Label(width/2-sldBtn-margin, sldBtn+margin, "Now"),
+          new Label(width/2-margin, sldBtn+margin, "New"),
         }, //end Place
         new PreGroup[]{
-          new TextBoxes(-margin, -margin-myGenome.ScrImgHei, 
+          new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
           new TextBox[]{
             new TextBox(fileBoxX, fileBoxY, 40*10, textSize+textBoxPadding*2, "")
           }
@@ -241,14 +241,16 @@ void createGUI() {
           }
           ), 
           new Group(0, 0, new Place[]{
-            new Slider(0, margin, width/2-sldCst-margin*3/2, rowHei, 10, 300, "small size (rowHei)"), 
-            new Slider(width/2+margin-margin*3/2, margin, width/2-sldCst-margin*3/2, sldBtn, 10, 300, "big size (sldBtn)"), 
-            new Slider(0, margin*2+sldBtn, width/2-sldCst-margin*3/2, margin, 100, "margin"), 
-            new Slider(width/2+margin-margin*3/2, margin*2+sldBtn, width/2-sldCst-margin*3/2, bottomMargin, 200, "bottom margin"), 
+            new Slider(0, margin, width/2-sldCst-margin*3/2, rowHei, 10, 300, "small size (rowHei)"),
+            new Slider(width/2+margin-margin*3/2, margin, width/2-sldCst-margin*3/2, sldBtn, 10, 300, "big size (sldBtn)"),
+            new Slider(0, margin*2+sldBtn, width/2-sldCst-margin*3/2, margin, 100, "margin"),
+            new Slider(width/2+margin-margin*3/2, margin*2+sldBtn, width/2-sldCst-margin*3/2, bottomMargin, 200, "bottom margin"),
+            new Slider(0, margin*3+sldBtn*2, width/2-sldCst-margin*3/2, textSize, 5, 40, "text size"),
+            new Slider(width/2+margin-margin*3/2, margin*3+sldBtn*2, width/2-sldCst-margin*3/2, textBoxPadding, 50, "textbox padding"),
             //new Slider(int x, int y, int scrollWid, int value, int minValue, int maxValue, "Bottom margin"),
             new Label(0, 0, "Layout:"), 
           }), 
-          new Group(0, margin*4+sldBtn*2, new Place[]{
+          new Group(0, margin*5+sldBtn*3, new Place[]{
             new Switch(0, margin, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"), 
             new Switch(margin+sldBtn*4, margin, sldBtn*4, rowHei*2, "Gene Numbers\nSlider or TextBox"), 
             new Switch(0, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Gene Unknown\nTextBox or Slider"), 
@@ -265,6 +267,6 @@ void createGUI() {
 
   //me.kid[0].kid[0].kid[1].objs[0].pressed=true;
   me.kid[0].kid[2].kid[2].objs[0].pressed = pixel_Slider;
-  me.kid[0].kid[2].kid[2].objs[0].pressed = number_Textbox;
-  me.kid[0].kid[2].kid[2].objs[0].pressed = unknown_Slider;
+  me.kid[0].kid[2].kid[2].objs[1].pressed = number_Textbox;
+  me.kid[0].kid[2].kid[2].objs[2].pressed = unknown_Slider;
 }
