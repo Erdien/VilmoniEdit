@@ -67,8 +67,8 @@ void AllSetNewFilePos(){
   myView.getWindowVisibleDisplayFrame(r);
   int fileBoxY=r.bottom-bottomMargin-rowHei*2-margin*2-textSize-textBoxPadding*2;
   me.objs[0].y=fileBoxY+margin+textSize+textBoxPadding*2;
-  me.objs[1].y=fileBoxY-margin;
-  me.objs[2].y=fileBoxY-margin;
+  me.objs[1].y=fileBoxY+textSize/2+textBoxPadding-rowHei;
+  me.objs[2].y=fileBoxY-textSize/2;
   me.kid[0].kid[0].kid[0].objs[0].y=fileBoxY;
   me.kid[0].kid[1].kid[0].objs[0].y=fileBoxY;
   me.kid[0].kid[2].kid[0].objs[0].y=fileBoxY;

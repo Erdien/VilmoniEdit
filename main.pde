@@ -182,7 +182,7 @@ void createGUI() {
           new Slider(sldBtn*2, 4*margin+6*resizedPSiz, width-sldCst-2*margin-sldBtn*2, 0, 0, 8, "Dress"),
 
           new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei-margin, "Now"),
-          new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei+2*margin+resizedPSiz-rowHei, "New")
+          new Label(geneX-margin, sldBtn*2-myGenome.ScrImgHei+2*margin+resizedPSiz+textSize, "New")
         }, //end place
         new PreGroup[]{
           new TextBoxes(-margin, -margin-myGenome.ScrImgHei,
