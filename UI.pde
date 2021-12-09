@@ -64,22 +64,22 @@ class Group extends PreGroup {
   }
 }
 class Slider extends Tuple {
-  final int buttonwid = sldBtn;
-  Slider(int x, int y, int scrollwid, int value, int maxValue, String name) {
-    this(x, y, scrollwid, value, 0, maxValue, false, -1, name);
+  final int buttonWid = sldBtn;
+  Slider(int x, int y, int scrollWid, int value, int maxValue, String name) {
+    this(x, y, scrollWid, value, 0, maxValue, false, -1, name);
   }
-  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, String name) {
-    this(x, y, scrollwid, value, minValue, maxValue, false, -1, name);
+  Slider(int x, int y, int scrollWid, int value, int minValue, int maxValue, String name) {
+    this(x, y, scrollWid, value, minValue, maxValue, false, -1, name);
   }
-  Slider(int x, int y, int scrollwid, int value, int minValue, int maxValue, boolean scrollPressed, int touchId, String name) {
+  Slider(int x, int y, int scrollWid, int value, int minValue, int maxValue, boolean scrollPressed, int touchId, String name) {
     this.x=x;
     this.y=y;
     this.value=value;
-    this.wid=scrollwid;
+    this.wid=scrollWid;
     this.objs=new Place[]{
-      new Scroll(buttonwid+margin, buttonwid/2, scrollwid, value, minValue, maxValue, touchId, name), 
-      new Button(0, 0, buttonwid, buttonwid, "-"), 
-      new Button(buttonwid+margin*2+scrollwid, 0, buttonwid, buttonwid, "+")
+      new Scroll(buttonWid+margin, buttonWid/2, scrollWid, value, minValue, maxValue, touchId, name), 
+      new Button(0, 0, buttonWid, buttonWid, "-"), 
+      new Button(buttonWid+margin*2+scrollWid, 0, buttonWid, buttonWid, "+")
     };
     this.objs[0].pressed=scrollPressed;
   }
@@ -113,7 +113,7 @@ class Slider extends Tuple {
  this.value=value;
  this.name=name;
  this.objs=new Place[]{
- new TextBox(0, 0, wid, rowHei, str(value)),
+ new TextBox(0, 0, wid, textSize, str(value)),
  new Button(wid, 0, rowHei, rowHei/2, "+"),
  new Button(wid, rowHei/2, rowHei, rowHei/2, "-")
  };

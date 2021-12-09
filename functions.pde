@@ -7,70 +7,6 @@ class Position {
     this.y=y;
   }
 }
-enum types {
-    nan,
-    num,
-    text,
-    col,
-    dress_wiggo,//12
-    dress_heddo,//24
-    dress_boddo,//26
-    dress_panto,//9
-  };
-class GeneType {
-  String name;
-  types type;
-  GeneType(String name, types type) {
-    this.name = name;
-    this.type = type;
-  }
-  //String getName(){
-  //  return name;
-  //}
-  Place[] selectGeneInput() {
-    switch(this.type) {
-    case nan:
-      return new Place[]{
-        me.kid[0].kid[0].kid[0].objs[1]
-      };
-    case num:
-      return new Place[]{
-        me.kid[0].kid[0].objs[2], 
-        me.kid[0].kid[0].objs[3]
-      };
-    case text:
-      return new Place[]{
-        me.kid[0].kid[0].kid[0].objs[1]
-      };
-    case col:
-      return new Place[]{
-        me.kid[0].kid[0].objs[4], 
-        me.kid[0].kid[0].objs[5], 
-        me.kid[0].kid[0].objs[6]
-      };
-    case dress_wiggo:
-      return new Place[]{
-        me.kid[0].kid[0].objs[7]
-      };
-    case dress_heddo:
-      return new Place[]{
-        me.kid[0].kid[0].objs[8]
-      };
-    case dress_boddo:
-      return new Place[]{
-        me.kid[0].kid[0].objs[9]
-      };
-    case dress_panto:
-      return new Place[]{
-        me.kid[0].kid[0].objs[10]
-      };
-    default://same as nan
-      return new Place[]{
-        me.kid[0].kid[0].kid[0].objs[1]
-      };
-    }
-  }
-}
 boolean isSimilar(color data, color check, int tollerance) { //tollerance is max distance
   int R1 = data >> 16 & 0xFF;
   int G1 = data >> 8 & 0xFF;
@@ -130,6 +66,51 @@ String[] SelectNames(){
     toReturn[i]=carry[i].name;
   return toReturn;
 }
+JSONObject defaultSettings(){
+JSONObject json = new JSONObject();
+  json.setInt("rowHei", 30);
+  json.setInt("sldBtn", 50);
+  json.setInt("margin", 10);
+  json.setInt("bottomMargin", 0);
+  json.setInt("textSize", 16);
+  json.setInt("textBoxPadding", 7);
+  json.setInt("pSiz", 8);
+  json.setBoolean("pixel_Slider", false);
+  json.setBoolean("number_Textbox", false);
+  json.setBoolean("unknown_Slider", false);
+  //json.setInt("textSize", 10);
+  //json.setInt("resizedPSiz", 32);
+  //println(json.toString());
+  return(json);
+}
+import java.io.Reader.*;
+void loadSettings(){
+  JSONObject json = loadJSONObject(sketchPath("")+"config.json");
+  rowHei = json.getInt("rowHei");
+  sldBtn = json.getInt("sldBtn");
+  margin = json.getInt("margin");
+  bottomMargin = json.getInt("bottomMargin");
+  pSiz = json.getInt("pSiz", 8);
+  pixel_Slider = json.getBoolean("pixel_Slider");
+  number_Textbox = json.getBoolean("number_Textbox");
+  unknown_Slider = json.getBoolean("unknown_Slider");
+  //json.setInt("textSize", 10);
+  //json.setInt("resizedPSiz", 32);
+}
+JSONObject saveSettings(){
+JSONObject json = new JSONObject();
+  json.setInt("rowHei", rowHei);
+  json.setInt("sldBtn", sldBtn);
+  json.setInt("margin", margin);
+  json.setInt("bottomMargin", bottomMargin);
+  json.setInt("pSiz", pSiz);
+  json.setBoolean("pixel_Slider", pixel_Slider);
+  json.setBoolean("number_Textbox", number_Textbox);
+  json.setBoolean("unknown_Slider", unknown_Slider);
+  //json.setInt("textSize", 10);
+  //json.setInt("resizedPSiz", 32);
+  return(json);
+}
 int compareSpieces(int genLen){
   switch(genLen){
     case 5:
@@ -140,7 +121,9 @@ int compareSpieces(int genLen){
       return 2;
     case 17:
       return 3;
+    case 4:
+      return 4;
     default:
-     return 4;
+      return 5;
   }
 }

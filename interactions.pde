@@ -6,8 +6,9 @@ void AllActions(){
   AllPresentFileAction();
   AllSetNewFilePos();
   AllUpdateAction();
-  if (me.kid[0].kid[1].shown) PixelActions();
   if (me.kid[0].kid[0].shown) GeneActions();
+  if (me.kid[0].kid[1].shown) PixelActions();
+  if (me.kid[0].kid[2].shown) SettingsActions();
   me.drawMe();
   PrepareArrow();
   ptouches=touches.length;
@@ -28,21 +29,31 @@ void GeneActions(){
   if(me.kid[0].kid[0].kid[1].touched) GeneTabAction();
   GeneTypeAction();
 }
+void SettingsActions(){
+  if(me.kid[0].kid[2].objs[0].touched) SettingsResetAction();
+  if(me.kid[0].kid[2].objs[1].touched) SettingsSaveAction();
+}
 void AllPresentFileAction(){
   if(me.objs[1].touched){
+    me.kid[0].kid[2].kid[0].objs[0].name=myGenome.path;
     me.kid[0].kid[1].kid[0].objs[0].name=myGenome.path;
     me.kid[0].kid[0].kid[0].objs[0].name=myGenome.path;
     }
     switch(me.kid[0].value){
       case 1:
-        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
+        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
+        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
+        me.kid[0].kid[2].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
       break;
       case 2:
-        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[0].kid[0].objs[0].name;
+        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
+        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
+        me.kid[0].kid[2].kid[0].objs[0].name=me.kid[0].kid[1].kid[0].objs[0].name;
       break;
       case 3:
-        me.kid[0].kid[0].kid[0].objs[0].name="";
-        me.kid[0].kid[1].kid[0].objs[0].name="";
+        me.kid[0].kid[0].kid[0].objs[0].name=me.kid[0].kid[2].kid[0].objs[0].name;
+        me.kid[0].kid[1].kid[0].objs[0].name=me.kid[0].kid[2].kid[0].objs[0].name;
+        me.kid[0].kid[2].kid[0].objs[0].name=me.kid[0].kid[2].kid[0].objs[0].name;
       break;
       case 4:
         me.kid[0].kid[0].kid[0].objs[0].name="";
@@ -54,12 +65,13 @@ void AllPresentFileAction(){
 void AllSetNewFilePos(){
   Rect r = new Rect();
   myView.getWindowVisibleDisplayFrame(r);
-  int fileBoxY=r.bottom-sldBtn-2*margin-rowHei;
-  me.objs[0].y=fileBoxY+rowHei+margin;
+  int fileBoxY=r.bottom-bottomMargin-rowHei*2-margin*2-textSize-textBoxPadding*2;
+  me.objs[0].y=fileBoxY+margin+textSize+textBoxPadding*2;
   me.objs[1].y=fileBoxY-margin;
   me.objs[2].y=fileBoxY-margin;
   me.kid[0].kid[0].kid[0].objs[0].y=fileBoxY;
   me.kid[0].kid[1].kid[0].objs[0].y=fileBoxY;
+  me.kid[0].kid[2].kid[0].objs[0].y=fileBoxY;
 }
 void AllUpdateAction(){
   if (me.objs[0].touched){
@@ -88,12 +100,12 @@ void AllUpdateAction(){
   }
 }
 void AllAfterImgSizChange(){  //a little bit messy, sorry for that
-  for(int i=0;i<2;i++)
+  for(int i=0;i<3;i++)    //major creature card image
     me.kid[0].kid[i].objs[0] = new Image(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid, myGenome.ScrImgHei, myGenome.img);
   for(int i = 0; i<me.kid[0].kid.length;i++){
-    me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;
-    me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;
-    me.kid[0].kid[i].kid[0].y=-margin-myGenome.ScrImgHei;
+    me.kid[0].kid[i].x=margin-myGenome.ScrImgWid;  //every top GroupBox x cord
+    me.kid[0].kid[i].y=margin+myGenome.ScrImgHei;  //every top GroupBox y cord
+    me.kid[0].kid[i].kid[0].y=-margin-myGenome.ScrImgHei;  //every File name textbox
   }
   me.kid[0].kid[0].kid[0].objs[1].y=6*margin+6*resizedPSiz+myGenome.ScrImgHei;
   int pTab=me.kid[0].kid[0].kid[1].value;
@@ -168,7 +180,7 @@ void PixelNewAction(){
 }
 void GeneSliderAction(){//to update
   if (me.kid[0].kid[0].objs[3].value==1000){
-    println("to many accuracy");
+    //println("to many accuracy");
     me.kid[0].kid[0].objs[2].valueSet(me.kid[0].kid[0].objs[2].value+1);
     me.kid[0].kid[0].objs[3].valueSet(0);
     me.kid[0].kid[0].objs[3].valueSet(-1);
@@ -183,7 +195,7 @@ void GeneSliderAction(){//to update
 }
 void GeneNewAction(){
   if(me.kid[0].kid[0].kid[1].value!=0)
-  switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==4?0:me.kid[0].kid[0].kid[1].value-1].type) {
+  switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==5?0:me.kid[0].kid[0].kid[1].value-1].type) {
   case nan:
     text("unknown type",500,500);
     me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
@@ -243,8 +255,8 @@ void GeneTypeAction(){
     me.kid[0].kid[0].objs[1].shown=false;
     return;
   } else me.kid[0].kid[0].objs[1].shown=true;
-  if(compareSpieces(myGenome.genes.size())==4)
-    type = geneNames[4][0];
+  if(compareSpieces(myGenome.genes.size())==geneNames.length-1)
+    type = geneNames[geneNames.length-1][0];
   else
     type = geneNames[compareSpieces(myGenome.genes.size())][me.kid[0].kid[0].kid[1].value-1];
   for(Place elem : type.selectGeneInput())
@@ -264,4 +276,48 @@ void GeneChangeActions(){//protected
   me.kid[0].kid[0].objs[12].y = me.kid[0].kid[0].kid[2].kid[0].y+sldBtn*2-myGenome.ScrImgHei+2*margin-textSize;
   //me.x=myGenome.ScrImgWid;
  // me.kid[0].kid[1].x=
+}
+void SettingsResetAction(){
+     /*setable:
+  reset default (have to be easy accessible. and with hard position)
+layout:
+  margin
+  row Height (min 10) 
+  fileModuleHeight
+  textsize (min 5)
+  textbox padding
+Micellanous:
+  slider/colorSwitch in Pixel section
+  sliders/text for integer values
+  sliders/text for unknown type values
+  the size of one pixel in code (only for non-standard creature cards)
+  */
+  /*
+pSiz = 8;
+resizedPSiz = 32;
+rowHei = 30;
+margin = 10;
+textSize = 10;
+sldBtn = 50;
+bottomMargin=200;
+*/
+  JSONObject json = defaultSettings();
+  //String[] jsonTrick = new String[]{json.toString()};
+  saveJSONObject(json, sketchPath("")+"config.json");
+  loadSettings();
+  createGUI();
+}
+void SettingsSaveAction(){
+  rowHei = me.kid[0].kid[2].kid[1].objs[0].value;
+  sldBtn = me.kid[0].kid[2].kid[1].objs[1].value;
+  margin = me.kid[0].kid[2].kid[1].objs[2].value;
+  bottomMargin = me.kid[0].kid[2].kid[1].objs[3].value;
+  
+  pixel_Slider = me.kid[0].kid[2].kid[2].objs[0].pressed;
+  number_Textbox = me.kid[0].kid[2].kid[2].objs[1].pressed;
+  unknown_Slider = me.kid[0].kid[2].kid[2].objs[2].pressed;
+  pSiz = me.kid[0].kid[2].kid[2].objs[3].value;
+  JSONObject json = saveSettings();
+  saveJSONObject(json, sketchPath("")+"config.json");
+  createGUI();
 }
