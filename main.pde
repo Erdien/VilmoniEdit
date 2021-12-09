@@ -150,6 +150,10 @@ void createGUI() {
       new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""});
   }
   geneX = myGenome.ScrImgWid + margin;
+  if(myGenome.ScrImgHei<50)
+    myGenome.ScrImgHei=50;
+  if (myGenome.ScrImgWid<50)
+    myGenome.ScrImgWid=50;
   me = new Group(0, 0, 
     new Place[]{
     new Button(fileBoxX, fileBoxY-margin, sldBtn*2, rowHei*2, "Update"),                     //look at interactions
@@ -227,12 +231,8 @@ void createGUI() {
 
         new Group(margin-myGenome.ScrImgWid, margin+myGenome.ScrImgHei, 
         new Place[]{
-          new Button(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid-30, myGenome.ScrImgHei-30, "reset\ndefault"), 
+          new Button(-margin, -margin-myGenome.ScrImgHei, myGenome.ScrImgWid+(myGenome.ScrImgWid>70?-30:+30), myGenome.ScrImgHei+(myGenome.ScrImgHei>70?-30:+30), "reset\ndefault"),   //this button have to be on the Top of the scren
           new Button(myGenome.ScrImgWid, rowHei*3-myGenome.ScrImgHei, sldBtn*2, rowHei*2, "save\nconfiguration"), 
-          //new Button(int x, int y, int wid, int hei, String name),
-          //new Switch(int x, int y, int wid, int hei, String name),
-          //Slider(int x, int y, int scrollWid, int value, int minValue, int maxValue, String name),
-          //new Tabs(int x, int y, float wid, float hei, boolean orientation, Group[] kid, String[] names),
         }, //end Place
         new PreGroup[]{
           new TextBoxes(-margin, -margin-myGenome.ScrImgHei, 
