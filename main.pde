@@ -11,7 +11,7 @@ int textBoxPadding = 7;
 boolean pixel_Slider = false;
 boolean number_Textbox = false;
 boolean unknown_Slider = false;
-int theme = 1;
+int theme = 0;
 
 int geneX;
 int ptouches;
@@ -112,7 +112,7 @@ void draw() {
   //if(frameCount==10)
   //showSoftKeyboard();
   if (me!=null) {
-    background(192);
+    background(Place.background);
     AllActions();
     //line(width/2,0,width/2,height);
   } else if (myGenome!=null) {
@@ -255,8 +255,8 @@ void createGUI() {
             new Switch(0, margin, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"), 
             new Switch(margin+sldBtn*4, margin, sldBtn*4, rowHei*2, "Gene Numbers\nSlider or TextBox"), 
             new Switch(0, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Gene Unknown\nTextBox or Slider"), 
-            new ColorTabs(margin+sldBtn*4, margin*2+rowHei*2, width-margin*3-sldBtn*4, rowHei*2, true, 3, 1,
-              new color[]{160, 80, color(160,0,0)},
+            new ColorTabs(margin+sldBtn*4, margin*2+rowHei*2, width-margin*3-sldBtn*4, rowHei*2, true, 3, 0,
+              new color[]{themes[0][1], themes[1][1], themes[2][1]},
               new String[]{"light", "dark", "red"}
             ),
             //new Switch(margin+sldBtn*4, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"),

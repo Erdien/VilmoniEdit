@@ -1,8 +1,10 @@
 /** basic components */
 class Place {
-  final int highlight = 200;
-  final int normal = 160;
-  final int dark = 120;
+  final static color highlight = 120;
+  final static color normal = 80;
+  final static color dark = 40;
+  final static color background = 60;
+  final static color textColor = 200;
   int x=0;
   int y=0;
   int wid=0;
@@ -26,7 +28,7 @@ class Place {
     if (this.touched)
       fill(dark);
     rect(this.x, this.y, this.wid, this.hei);
-    fill(0);
+    fill(textColor);
     textAlign(CENTER, CENTER);
     text(this.name, this.x+this.wid/2, this.y+this.hei/2);
   }
@@ -61,7 +63,7 @@ class Button extends Place {
     else
       fill(normal);
     rect(this.x, this.y, this.wid, this.hei);
-    fill(0);
+    fill(textColor);
     textAlign(CENTER, CENTER);
     text(this.name, this.x+this.wid/2, this.y+this.hei/2);
   }
@@ -107,7 +109,7 @@ class Switch extends Place {
     if (this.touched)
       fill(dark);
     rect(this.x, this.y, this.wid, this.hei);
-    fill(0);
+    fill(textColor);
     textAlign(CENTER, CENTER);
     text(this.name, this.x+this.wid/2, this.y+this.hei/2);
   }
@@ -160,7 +162,7 @@ class Scroll extends Place {
     rect(this.x, this.y-this.hei/2, this.wid, this.hei);
     fill(highlight);
     rect(this.x+(this.value-this.barmin)*this.wid/(this.barmax-this.barmin)-this.barwid/2, this.y-this.barhei/2, this.barwid, this.barhei);
-    fill(0);
+    fill(textColor);
     textAlign(CENTER, BOTTOM);
     text(this.name + ": " + this.value, this.x+this.wid/2, this.y-this.barhei/2);
   }
@@ -212,7 +214,7 @@ class TextBox extends Place {
     else
       fill(highlight);
     rect(this.x, this.y, this.wid, this.hei);
-    fill(0);
+    fill(textColor);
     textAlign(LEFT,CENTER);
     text(this.name + (this.pressed?"_":""), this.x+2, this.y+this.hei/2);
   }
@@ -282,7 +284,7 @@ class Label extends Place {
     fill(this.value);
     noStroke();
     rect(this.x, this.y, this.wid, this.hei);
-    fill(0);
+    fill(textColor);
     if(this.hei>0)
       textAlign(LEFT, BOTTOM);
     else

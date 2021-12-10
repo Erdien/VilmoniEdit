@@ -194,46 +194,48 @@ void GeneSliderAction(){//to update
     me.kid[0].kid[0].objs[2].valueSet(0);
 }
 void GeneNewAction(){
-  if(me.kid[0].kid[0].kid[1].value!=0)
-  switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==5?0:me.kid[0].kid[0].kid[1].value-1].type) {
-  case nan:
-    text("unknown type",500,500);
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      parseLong(me.kid[0].kid[0].kid[0].objs[1].name), 0);
-    return;
-  case num:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      me.kid[0].kid[0].objs[2].value*1000+
-      me.kid[0].kid[0].objs[3].value, 0);
-    return;
-  case text:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-    me.kid[0].kid[0].kid[0].objs[1].name, 0);
-    return;
-  case col:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      (me.kid[0].kid[0].objs[4].value<<16)+
-      (me.kid[0].kid[0].objs[5].value<<8)+
-      (me.kid[0].kid[0].objs[6].value), 0);
-    return;
-  case dress_wiggo:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      me.kid[0].kid[0].objs[7].value, 0);
-    return;
-  case dress_heddo:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      me.kid[0].kid[0].objs[8].value, 0);
-    return;
-  case dress_boddo:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      me.kid[0].kid[0].objs[9].value, 0);
-    return;
-  case dress_panto:
-    me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
-      me.kid[0].kid[0].objs[10].value, 0);
-    return;
-  default:
-    text("unknown type",500,500);
+  if(me.kid[0].kid[0].kid[1].value!=0){
+    fill(Place.textColor);
+    switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==5?0:me.kid[0].kid[0].kid[1].value-1].type) {
+    case nan:
+      text("unknown type",500,500);
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        parseLong(me.kid[0].kid[0].kid[0].objs[1].name), 0);
+      return;
+    case num:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        me.kid[0].kid[0].objs[2].value*1000+
+        me.kid[0].kid[0].objs[3].value, 0);
+      return;
+    case text:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+      me.kid[0].kid[0].kid[0].objs[1].name, 0);
+      return;
+    case col:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        (me.kid[0].kid[0].objs[4].value<<16)+
+        (me.kid[0].kid[0].objs[5].value<<8)+
+        (me.kid[0].kid[0].objs[6].value), 0);
+      return;
+    case dress_wiggo:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        me.kid[0].kid[0].objs[7].value, 0);
+      return;
+    case dress_heddo:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        me.kid[0].kid[0].objs[8].value, 0);
+      return;
+    case dress_boddo:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        me.kid[0].kid[0].objs[9].value, 0);
+      return;
+    case dress_panto:
+      me.kid[0].kid[0].kid[2].kid[0].objs[0] = new Gene(
+        me.kid[0].kid[0].objs[10].value, 0);
+      return;
+    default:
+      text("unknown type",500,500);
+  }
     return;
   }
 }

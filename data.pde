@@ -99,6 +99,11 @@ final color[] colors = new color[]{
   color(20, 171, 9), //alt dgreen 18-12
   color(89, 49, 27)     //none       19
 };
+final color[][] themes = new color[][]{
+  {200, 160, 120, 192, 0},
+  {120, 80, 40, 60, 200},
+  {color(255,0,0), color(180,0,0), color (130,0,0), color(220,0,0), color(0,255,255)},
+};
 final GeneType[][] geneNames = new GeneType[][]{
   {
     new GeneType("Unknown", types.nan), //GMO checker

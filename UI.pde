@@ -159,7 +159,7 @@ class ColorTabs extends Tuple{
       if (this.objs[i].shown){
         fill(this.palette[i]);
         rect(this.objs[i].x, this.objs[i].y, this.objs[i].wid, this.objs[i].hei);
-        fill(0);
+        fill(textColor);
         textAlign(CENTER, CENTER);
         text(this.objs[i].name, this.objs[i].x+this.objs[i].wid/2, this.objs[i].y+this.objs[i].hei/2);
         if (this.objs[i].pressed)

@@ -83,7 +83,7 @@ class Gene extends Place{
         this.y+floor(i/((width-geneX)/this.wid))*this.wid, 
         this.hei, this.hei);
     }
-    fill(0);
+    fill(textColor);
     text(this.name, this.x+100, this.y-textSize);
     stroke(0);
   }
