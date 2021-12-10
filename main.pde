@@ -241,7 +241,7 @@ void createGUI() {
             new TextBox(fileBoxX, fileBoxY, 40*10, textSize+textBoxPadding*2, "")
           }
           ), 
-          new Group(0, 0, new Place[]{
+          new Group(0, textSize, new Place[]{
             new Slider(0, margin, width/2-sldCst-margin*3/2, rowHei, 10, 300, "small size (rowHei)"),
             new Slider(width/2+margin-margin*3/2, margin, width/2-sldCst-margin*3/2, sldBtn, 10, 300, "big size (sldBtn)"),
             new Slider(0, margin*2+sldBtn, width/2-sldCst-margin*3/2, margin, 100, "margin"),
@@ -249,9 +249,9 @@ void createGUI() {
             new Slider(0, margin*3+sldBtn*2, width/2-sldCst-margin*3/2, textSize, 5, 40, "text size"),
             new Slider(width/2+margin-margin*3/2, margin*3+sldBtn*2, width/2-sldCst-margin*3/2, textBoxPadding, 50, "textbox padding"),
             //new Slider(int x, int y, int scrollWid, int value, int minValue, int maxValue, "Bottom margin"),
-            new Label(0, 0, "Layout:"), 
+            new Label(0, -textSize/2, "Layout:"), 
           }), 
-          new Group(0, margin*5+sldBtn*3, new Place[]{
+          new Group(0, margin*5+sldBtn*3+textSize*2, new Place[]{
             new Switch(0, margin, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"), 
             new Switch(margin+sldBtn*4, margin, sldBtn*4, rowHei*2, "Gene Numbers\nSlider or TextBox"), 
             new Switch(0, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Gene Unknown\nTextBox or Slider"), 
@@ -260,9 +260,9 @@ void createGUI() {
               new String[]{"light", "dark", "red"}
             ),
             //new Switch(margin+sldBtn*4, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"),
-            new Slider(0, margin*3+rowHei*4, width/2-sldCst-margin*3/2, pSiz, 1, 30, "source Code Pixel size"), 
+            new Slider(0, margin*3+rowHei*4+textSize, width/2-sldCst-margin*3/2, pSiz, 1, 30, "source Code Pixel size"), 
             //new Slider(width/2+margin-margin*3/2, margin*3+rowHei*4, width/2-sldCst-margin*3/2, sldBtn, 10, 300, "big size (sldBtn)"),
-            new Label(0, 0, "Micelanous:"), 
+            new Label(0, -textSize/2, "Micelanous:"), 
           })
         }//end Container
         ), //end Settings

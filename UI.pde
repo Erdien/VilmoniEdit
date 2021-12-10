@@ -129,6 +129,8 @@ class ColorTabs extends Tuple{
     this.x=x;
     this.y=y;
     this.objs=new Place[amount];
+    if(wid<hei)
+      wid=hei;
     for (int i=0; i<amount; i++)
       if (orientation)
         this.objs[i]=new Switch(floor(i%(wid/hei))*hei, floor(i/(wid/hei))*hei, hei, hei, names.length>i?names[i]:str(i));
