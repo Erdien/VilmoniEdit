@@ -305,6 +305,7 @@ bottomMargin=200;
   //String[] jsonTrick = new String[]{json.toString()};
   saveJSONObject(json, sketchPath("")+"config.json");
   loadSettings();
+  //pSiz=8;
   createGUI();
 }
 void SettingsSaveAction(){
@@ -318,7 +319,8 @@ void SettingsSaveAction(){
   pixel_Slider = me.kid[0].kid[2].kid[2].objs[0].pressed;
   number_Textbox = me.kid[0].kid[2].kid[2].objs[1].pressed;
   unknown_Slider = me.kid[0].kid[2].kid[2].objs[2].pressed;
-  pSiz = me.kid[0].kid[2].kid[2].objs[3].value;
+  theme = me.kid[0].kid[2].kid[2].objs[3].value;
+  pSiz = me.kid[0].kid[2].kid[2].objs[4].value;
   JSONObject json = saveSettings();
   saveJSONObject(json, sketchPath("")+"config.json");
   createGUI();

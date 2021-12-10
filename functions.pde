@@ -78,6 +78,7 @@ JSONObject json = new JSONObject();
   json.setBoolean("pixel_Slider", false);
   json.setBoolean("number_Textbox", false);
   json.setBoolean("unknown_Slider", false);
+  json.setInt("theme", 0);
   //json.setInt("textSize", 10);
   //json.setInt("resizedPSiz", 32);
   //println(json.toString());
@@ -92,11 +93,11 @@ void loadSettings(){
   bottomMargin = json.getInt("bottomMargin");
   textSize = json.getInt("textSize");
   textBoxPadding = json.getInt("textBoxPadding");
-  pSiz = json.getInt("pSiz", 8);
+  pSiz = json.getInt("pSiz");
   pixel_Slider = json.getBoolean("pixel_Slider");
   number_Textbox = json.getBoolean("number_Textbox");
   unknown_Slider = json.getBoolean("unknown_Slider");
-  //json.setInt("textSize", 10);
+  theme = json.getInt("theme");
   //json.setInt("resizedPSiz", 32);
 }
 JSONObject saveSettings(){
@@ -111,6 +112,7 @@ JSONObject json = new JSONObject();
   json.setBoolean("pixel_Slider", pixel_Slider);
   json.setBoolean("number_Textbox", number_Textbox);
   json.setBoolean("unknown_Slider", unknown_Slider);
+  json.setInt("theme", theme);
   //json.setInt("textSize", 10);
   //json.setInt("resizedPSiz", 32);
   return(json);

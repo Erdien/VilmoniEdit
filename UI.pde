@@ -121,10 +121,11 @@ class Slider extends Tuple {
  }*/
 class ColorTabs extends Tuple{
   PImage mask;
-  ColorTabs(int x, int y, int wid, int hei, boolean orientation, int amount, int value) {
-    this(x, y, wid, hei, orientation, amount, value, new String[0]);
+  color[] palette;
+  ColorTabs(int x, int y, int wid, int hei, boolean orientation, int amount, int value, color[] palette) {
+    this(x, y, wid, hei, orientation, amount, value, palette, new String[0]);
   }
-  ColorTabs(int x, int y, int wid, int hei, boolean orientation, int amount, int value, String[] names) {
+  ColorTabs(int x, int y, int wid, int hei, boolean orientation, int amount, int value, color[] palette, String[] names) {
     this.x=x;
     this.y=y;
     this.objs=new Place[amount];
@@ -147,13 +148,14 @@ class ColorTabs extends Tuple{
     mask.updatePixels();
     this.objs[value].pressed=true;
     this.value=value;
+    this.palette=palette;
   }
   void drawMe(){
     for (int i=0; i<this.objs.length; i++) {
       pushMatrix();
       translate(this.x, this.y);
       if (this.objs[i].shown){
-        fill(colors[i]);
+        fill(this.palette[i]);
         rect(this.objs[i].x, this.objs[i].y, this.objs[i].wid, this.objs[i].hei);
         fill(0);
         textAlign(CENTER, CENTER);

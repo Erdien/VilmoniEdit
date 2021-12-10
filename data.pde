@@ -92,7 +92,7 @@ final color[] colors = new color[]{
   color(153, 95, 66), //brown      12
   color(255, 255, 255), //white      13
   color(149, 149, 149), //gray       14
-  color(0, 0, 0), //black      15
+  color(0, 0, 0), //black      1
   //controll
   color(255, 255, 243), //bg         16
   color(20, 194, 183), //alt teal   17-12
