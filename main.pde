@@ -112,7 +112,7 @@ void draw() {
   //if(frameCount==10)
   //showSoftKeyboard();
   if (me!=null) {
-    background(Place.background);
+    background(background);
     AllActions();
     //line(width/2,0,width/2,height);
   } else if (myGenome!=null) {
@@ -255,7 +255,7 @@ void createGUI() {
             new Switch(0, margin, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"), 
             new Switch(margin+sldBtn*4, margin, sldBtn*4, rowHei*2, "Gene Numbers\nSlider or TextBox"), 
             new Switch(0, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Gene Unknown\nTextBox or Slider"), 
-            new ColorTabs(margin+sldBtn*4, margin*2+rowHei*2, width-margin*3-sldBtn*4, rowHei*2, true, 3, 0,
+            new ColorTabs(margin+sldBtn*4, margin*2+rowHei*2, width-margin*3-sldBtn*4, rowHei*2, true, 3, theme,
               new color[]{themes[0][1], themes[1][1], themes[2][1]},
               new String[]{"light", "dark", "red"}
             ),

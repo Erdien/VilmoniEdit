@@ -1,10 +1,10 @@
 /** basic components */
+color highlight = 200;
+color normal = 160;
+color dark = 120;
+color background = 192;
+color textColor = 0;
 class Place {
-  final static color highlight = 120;
-  final static color normal = 80;
-  final static color dark = 40;
-  final static color background = 60;
-  final static color textColor = 200;
   int x=0;
   int y=0;
   int wid=0;

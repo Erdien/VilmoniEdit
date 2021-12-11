@@ -98,6 +98,7 @@ void loadSettings(){
   number_Textbox = json.getBoolean("number_Textbox");
   unknown_Slider = json.getBoolean("unknown_Slider");
   theme = json.getInt("theme");
+  UpdateTheme();
   //json.setInt("resizedPSiz", 32);
 }
 JSONObject saveSettings(){
@@ -113,9 +114,17 @@ JSONObject json = new JSONObject();
   json.setBoolean("number_Textbox", number_Textbox);
   json.setBoolean("unknown_Slider", unknown_Slider);
   json.setInt("theme", theme);
+  UpdateTheme();
   //json.setInt("textSize", 10);
   //json.setInt("resizedPSiz", 32);
   return(json);
+}
+void UpdateTheme(){
+  highlight = themes[theme][0];
+  normal = themes[theme][1];
+  dark = themes[theme][2];
+  background = themes[theme][3];
+  textColor = themes[theme][4];
 }
 int compareSpieces(int genLen){
   switch(genLen){

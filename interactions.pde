@@ -195,7 +195,7 @@ void GeneSliderAction(){//to update
 }
 void GeneNewAction(){
   if(me.kid[0].kid[0].kid[1].value!=0){
-    fill(Place.textColor);
+    fill(textColor);
     switch(geneNames[compareSpieces(myGenome.genes.size())][compareSpieces(myGenome.genes.size())==5?0:me.kid[0].kid[0].kid[1].value-1].type) {
     case nan:
       text("unknown type",500,500);
@@ -323,6 +323,7 @@ void SettingsSaveAction(){
   unknown_Slider = me.kid[0].kid[2].kid[2].objs[2].pressed;
   theme = me.kid[0].kid[2].kid[2].objs[3].value;
   pSiz = me.kid[0].kid[2].kid[2].objs[4].value;
+  
   JSONObject json = saveSettings();
   saveJSONObject(json, sketchPath("")+"config.json");
   createGUI();
