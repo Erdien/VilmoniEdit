@@ -148,7 +148,7 @@ void createGUI() {
   } else {
     pixel1 = new Slider(0, 0, width-sldCst-2*margin, 0, myGenome.points.size()-1, "Pixel");
     pixel2 = new ColorTabs(sldBtn*4+margin*2, sldBtn*2+margin*4, width-sldBtn*4-margin*4, sldBtn, true, 16, 0, colors,
-      new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""});
+      new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X", "E", "", "", "", ""}, "Value");
   }
   geneX = myGenome.ScrImgWid + margin;
   if(myGenome.ScrImgHei<50)
@@ -257,7 +257,8 @@ void createGUI() {
             new Switch(0, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Gene Unknown\nTextBox or Slider"), 
             new ColorTabs(margin+sldBtn*4, margin*2+rowHei*2, width-margin*3-sldBtn*4, rowHei*2, true, 3, theme,
               new color[]{themes[0][1], themes[1][1], themes[2][1]},
-              new String[]{"light", "dark", "red"}
+              new String[]{"light", "dark", "red"},
+              "Theme"
             ),
             //new Switch(margin+sldBtn*4, margin*2+rowHei*2, sldBtn*4, rowHei*2, "Pixel\nSlider or ColorTab"),
             new Slider(0, margin*3+rowHei*4+textSize, width/2-sldCst-margin*3/2, pSiz, 1, 30, "source Code Pixel size"), 
